@@ -49,7 +49,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git bundler osx rake ruby rails gem)
+plugins=(git bundler osx rake ruby rails gem per-directory-history)
 
 # User configuration
 
@@ -128,4 +128,47 @@ fco() {
 }
 
 
+# Modified version where you can press
+#   - CTRL-O to open with `open` command,
+#   - CTRL-E or Enter key to open with the $EDITOR
+fo() {
+  local out file key
+  out=$(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e)
+  key=$(head -1 <<< "$out")
+  file=$(head -2 <<< "$out" | tail -1)
+  if [ -n "$file" ]; then
+    [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-vim} "$file"
+  fi
+}
+
+# v - open files in ~/.viminfo
+v() {
+  local files
+  files=$(grep '^>' ~/.viminfo | cut -c3- |
+          while read line; do
+            [ -f "${line/\~/$HOME}" ] && echo "$line"
+          done | fzf-tmux -d -m -q "$*" -1) && vim ${files//\~/$HOME}
+}
+
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+
+# the below two functions are useful to set the current JDK. usage: `$ setjdk 1.6`
+function setjdk() {
+  if [ $# -ne 0 ]; then
+       removeFromPath '/System/Library/Frameworks/JavaVM.framework/Home/bin'
+       if [ -n "${JAVA_HOME+x}" ]; then
+           removeFromPath $JAVA_HOME
+       fi
+       export JAVA_HOME=`/usr/libexec/java_home -v $@`
+       export JDK_HOME="/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK"
+       export PATH=$JAVA_HOME/bin:$PATH
+  fi
+}
+function removeFromPath() {
+   export PATH=$(echo $PATH | sed -E -e "s;:$1;;" -e "s;$1:?;;")
+}
+
+ulimit -n 65536
+ulimit -u 2048
+
+export STUDIO_JDK=/Library/Java/JavaVirtualMachines/jdk1.8.0_102.jdk/Contents/Home

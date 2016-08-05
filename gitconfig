@@ -2,8 +2,10 @@
 	email = emory@heyzap.com
 	name = Emory Petermann
 [core]
-	editor = vim
+	editor = nvim
 [push]
 	default = simple
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[rerere]
+	enabled = true
