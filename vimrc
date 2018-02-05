@@ -22,6 +22,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'godlygeek/tabular'
   Plug 'plasticboy/vim-markdown'
   Plug 'wellle/targets.vim'
+  Plug 'nathanaelkane/vim-indent-guides'
+  Plug 'mileszs/ack.vim'
+  Plug 'tpope/vim-dispatch'
+  Plug 'elzr/vim-json'
+  Plug 'tpope/vim-rails'
 call plug#end()
 
 " Turn on syntax highlighting
@@ -50,7 +55,6 @@ set encoding=utf-8
 
 " Whitespace
 set wrap
-set textwidth=79
 set formatoptions=tcqrn1
 set tabstop=2
 set shiftwidth=2
@@ -106,33 +110,33 @@ let g:airline_powerline_fonts = 1
 " use mousewheel in vim
 set mouse=a
 
-set clipboard=unnamed
+set clipboard=
 
 nnoremap <C-p> :FZF<CR>
 
 
 " persisten undo
 set undofile
-set undodir=/Users/emorypetermann/.vim/undo
+set undodir=~/.vim/undo
 
 " better grepping
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
-let g:syntastic_java_javac_classpath = '/Users/emorypetermann/repos/android-sdk/ads-sdk-build/heyzap-ads-sdk.jar:/Users/emorypetermann/Library/Android/sdk/platforms/android-21/android.jar'
+let g:syntastic_java_javac_classpath = '~/Library/Android/sdk/platforms/android-25/android.jar'
 
 let g:formatdef_custom_astyle_java = '"astyle --style=java --mode=java -pcHs4"'
 let g:formatters_java = ['custom_astyle_java']
 
 nnoremap <C-f> :Autoformat<CR>
 
-set nowrap
+set wrap
 
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 set fdm=indent
-set foldlevel=1
+set foldlevel=3
 set foldnestmax=2
 
 set backup 
@@ -140,3 +144,30 @@ set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set backupskip=/tmp/*,/private/tmp/* 
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp 
 set writebackup
+
+set breakindent
+
+set noea
+
+au BufReadCmd *.aar call zip#Browse(expand("<amatch>"))
+
+let g:indent_guides_auto_colors = 1
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+let g:ackhighlight = 1
+let g:ack_autofold_results = 1
+let g:ack_use_dispatch = 1
+
+let g:qfenter_keymap = {}
+let g:qfenter_keymap.vopen = ['<C-v>']
+let g:qfenter_keymap.hopen = ['<C-CR>', '<C-s>', '<C-x>']
+let g:qfenter_keymap.topen = ['<C-t>']
+
+:map <ScrollWheelUp> <C-Y>
+:map <ScrollWheelDown> <C-E>
+
+let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
