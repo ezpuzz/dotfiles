@@ -7,3 +7,10 @@
 	default = simple
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[pull]
+	rebase = true
+[color "diff"]
+	whitespace = red reverse
+[color]
+	diff = auto
+	ui = auto
