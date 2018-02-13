@@ -158,8 +158,7 @@ map <leader><space> :let @/=''<cr> " clear search
 
 " use mousewheel in vim
 set mouse=a
-
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 nnoremap <C-p> :FZF<CR>
 
@@ -191,7 +190,7 @@ autocmd FileType ruby compiler ruby
 set wildmode=longest,list,full
 set wildmenu
 
-let g:ackprg = "ag --vimgrep"
+let g:ackprg = "rg --vimgrep"
 
 if has ("win32")
   let g:neoterm_eof = "\r"
@@ -247,3 +246,7 @@ set ttimeout
 set ttimeoutlen=50
 set autoindent
 set backspace=indent,eol,start
+
+" mode dependent cursor
+noremap <Esc>O[ <Esc>
+noremap! <Esc>O[ <Esc>
