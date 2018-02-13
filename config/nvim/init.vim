@@ -9,6 +9,7 @@ call plug#begin('~/.config/nvim/plugged')
   endfunction
 
   " appearance
+  Plug 'jacoborus/tender.vim'
   Plug 'altercation/vim-colors-solarized'
   Plug 'JulioJu/neovim-qt-colors-solarized-truecolor-only'
   Plug 'vim-airline/vim-airline'
@@ -67,16 +68,31 @@ syntax on
 " For plugins to load correctly
 filetype plugin indent on
 
-set t_Co=16
+" 24-bit color themes
+if (has("termguicolors"))
+  set termguicolors
+endif
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
 set background=dark
-let g:solarized_termcolors=16
-let g:solarized_italic=0
-let g:solarized_bold=0
-color solarized
+
+" let g:solarized_nvimqt_italic=0
+" let g:solarized_nvimqt_underline=0
+" let g:solarized_nvimqt_bold=0
+" colorscheme solarized_nvimqt
+
+" alt colors for configured term
+" let g:solarized_termcolors=16
+" let g:solarized_italic=0
+" let g:solarized_bold=0
+" colorscheme solarized
+
+colorscheme tender
 
 " use fancy airline fonts
 let g:airline_powerline_fonts = 1
-let g:airline_solarized_bg='dark'
+" let g:airline_solarized_bg='dark'
+let g:airline_theme='tenderplus'
 
 " Security
 set modelines=0
@@ -143,7 +159,7 @@ map <leader><space> :let @/=''<cr> " clear search
 " use mousewheel in vim
 set mouse=a
 
-set clipboard=unnamedplus
+set clipboard=unnamed
 
 nnoremap <C-p> :FZF<CR>
 
