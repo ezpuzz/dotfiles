@@ -20,7 +20,7 @@ call plug#begin('~/.config/nvim/plugged')
   " completion
   Plug 'roxma/nvim-completion-manager'
   Plug 'roxma/ncm-flow'
-  Plug 'othree/csscomplete.vim'
+  Plug 'othree/csscomplete.vim', { 'for': ['css', 'jsx'] }
 
   " global vim commands
   Plug 'tpope/vim-surround'
@@ -48,13 +48,13 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'plasticboy/vim-markdown'
   Plug 'kchmck/vim-coffee-script'
   Plug 'mustache/vim-mustache-handlebars'
-  Plug 'tfnico/vim-gradle'
-  Plug 'elzr/vim-json'
+  Plug 'tfnico/vim-gradle', { 'for': ['groovy'] }
+  Plug 'elzr/vim-json', { 'for': ['json'] }
 
   " ruby / rails
-  Plug 'tpope/vim-rails'
-  Plug 'tpope/vim-bundler'
-  Plug 'vim-ruby/vim-ruby'
+  Plug 'tpope/vim-rails', { 'for': ['ruby'] }
+  Plug 'tpope/vim-bundler', { 'for': ['ruby'] }
+  Plug 'vim-ruby/vim-ruby', { 'for': ['ruby'] }
 
   " react
   Plug 'flowtype/vim-flow'
