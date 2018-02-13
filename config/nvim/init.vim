@@ -60,6 +60,9 @@ call plug#begin('~/.config/nvim/plugged')
   " react
   Plug 'flowtype/vim-flow'
   Plug 'mxw/vim-jsx'
+
+  " time tracking
+  Plug 'wakatime/vim-wakatime'
 call plug#end()
 
 " Turn on syntax highlighting
@@ -246,7 +249,3 @@ set ttimeout
 set ttimeoutlen=50
 set autoindent
 set backspace=indent,eol,start
-
-" mode dependent cursor
-noremap <Esc>O[ <Esc>
-noremap! <Esc>O[ <Esc>

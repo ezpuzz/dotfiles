@@ -17,23 +17,38 @@ COMPLETION_WAITING_DOTS="true"
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(git bundler rake ruby rails gem per-directory-history)
+plugins=(git bundler rake ruby rails gem per-directory-history zsh-syntax-highlighting)
 
 # User configuration
 
-export PATH="$PATH:$HOME/.rvm/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="$PATH:$HOME/dotfiles/bin:$HOME/.rvm/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 source $ZSH/oh-my-zsh.sh
 
 export LANG=en_US.UTF-8
 
 alias ls='ls --color=auto'
+alias lg='git lg'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-eval `dircolors ~/.dir_colors`
+eval `dircolors ~/dotfiles/LS_COLORS`
 
-export FZF_DEFAULT_COMMAND='ag -g ""'
+# FZF + fd
+# Use fd (https://github.com/sharkdp/fd) instead of the default find
+# command for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
+export FZF_DEFAULT_COMMAND='fd --type f --color=always'
+export FZF_DEFAULT_OPTS='--ansi'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export NDK_ROOT=/usr/local/Cellar/android-ndk/r10e
