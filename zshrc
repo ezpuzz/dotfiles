@@ -11,7 +11,7 @@ HYPHEN_INSENSITIVE="true"
 
 export UPDATE_ZSH_DAYS=1
 
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 COMPLETION_WAITING_DOTS="true"
 
@@ -21,7 +21,7 @@ plugins=(git bundler rake ruby rails gem per-directory-history zsh-syntax-highli
 
 # User configuration
 
-export PATH="$PATH:$HOME/dotfiles/bin:$HOME/.rvm/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="$PATH:$HOME/dotfiles/bin:$HOME/.rvm/bin:/usr/lib/go-1.9/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -162,3 +162,19 @@ less_options=(
 export LESS="${less_options[*]}"
 export PAGER='less'
 export MANPAGER="less -X"
+
+# "Windows subsystem for Linux" workarounds
+
+if [[ -f /proc/version && $(</proc/version) == *Microsoft@Microsoft* ]]
+then
+	# Set correct umask
+	# Microsoft/BashOnWindows#352
+	if [[ "$(umask)" == '000' ]]
+	then
+		umask 022
+	fi
+
+	# Prevent ZSH from changing the priority of the background processes with nice.
+	# Microsoft/BashOnWindows#1887
+	unsetopt BG_NICE
+fi
