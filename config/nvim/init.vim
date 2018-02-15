@@ -20,6 +20,9 @@ call plug#begin('~/.config/nvim/plugged')
 
   " completion
   Plug 'roxma/nvim-completion-manager'
+  Plug 'fgrsnau/ncm-otherbuf'
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
   Plug 'roxma/ncm-flow'
   Plug 'othree/csscomplete.vim', { 'for': ['css', 'jsx'] }
 
@@ -65,12 +68,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'wakatime/vim-wakatime'
 call plug#end()
 
-" Turn on syntax highlighting
-syntax on
-
-" For plugins to load correctly
-filetype plugin indent on
-
 " 24-bit color themes
 if (has("termguicolors"))
   set termguicolors
@@ -97,14 +94,8 @@ let g:airline_powerline_fonts = 1
 " let g:airline_solarized_bg='dark'
 let g:airline_theme='tenderplus'
 
-" Security
-set modelines=0
-
 " Show line numbers
 set number
-
-" Show file stats
-set ruler
 
 " Blink cursor on error instead of beeping (grr)
 set visualbell
@@ -112,24 +103,21 @@ set visualbell
 " highlight current line
 set cursorline
 
-" Encoding
-set encoding=utf-8
+" Security
+set modelines=0
 
 " Whitespace
 set wrap
-set textwidth=79
-set formatoptions=tcqrn1
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set textwidth=100
+set formatoptions+=tcqln1j
 set expandtab
-set noshiftround
+
+" editorconfig will take care of indentation
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 " Cursor motion
 set scrolloff=3
-set backspace=indent,eol,start
 set matchpairs+=<:> " use % to jump between pairs
-runtime! macros/matchit.vim
 
 " Move up/down editor lines
 nnoremap j gj
@@ -138,26 +126,15 @@ nnoremap k gk
 " Allow hidden buffers
 set hidden
 
-" Rendering
-set ttyfast
-
-" Status bar
-set laststatus=2
-
 " Last line
 set showmode
 set showcmd
 
 " Searching
-nnoremap / /\v
-vnoremap / /\v
 set hlsearch
-set incsearch
 set ignorecase
 set smartcase
 set showmatch
-map <leader><space> :let @/=''<cr> " clear search
-
 
 " use mousewheel in vim
 set mouse=a
@@ -181,17 +158,13 @@ nnoremap <C-f> :Autoformat<CR>
 
 set nowrap
 
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
 set fdm=indent
 set foldnestmax=3
-set scrolloff=10
 set foldlevel=3
 
 autocmd FileType ruby compiler ruby
 
 set wildmode=longest,list,full
-set wildmenu
 
 let g:ackprg = "rg --vimgrep"
 
@@ -219,6 +192,9 @@ nnoremap <silent> ,tl :call neoterm#clear()<cr>
 " kills the current job (send a <c-c>)
 nnoremap <silent> ,tc :call neoterm#kill()<cr>
 
+" nvim terminal mode
+:tnoremap <Esc> <C-\><C-n>
+
 " Rails commands
 command! Troutes :T rake routes
 command! -nargs=+ Troute :T rake routes | grep <args>
@@ -236,16 +212,21 @@ command! -nargs=+ Tg :T git <args>
 set nobackup
 set noswapfile
 
-" nvim terminal mode
-:tnoremap <Esc> <C-\><C-n>
-
 " completion stuff
 set shortmess+=c
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-set ttimeout
-set ttimeoutlen=50
-set autoindent
-set backspace=indent,eol,start
+set smartindent
+
+let g:plug_threads=32
+
+let g:UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
+let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
+let g:UltiSnipsRemoveSelectModeMappings = 0
+
+let g:gitgutter_map_keys = 0
+let g:gitgutter_grep_command = 'ag'
+
