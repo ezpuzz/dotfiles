@@ -21,7 +21,8 @@ plugins=(git bundler rake ruby rails gem per-directory-history zsh-syntax-highli
 
 # User configuration
 
-export PATH="$PATH:$HOME/dotfiles/bin:$HOME/.rvm/bin:/usr/lib/go-1.9/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="$PATH:$HOME/dotfiles/bin:/usr/lib/go-1.9/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
+source $HOME/.rvm/scripts/rvm
 
 source $ZSH/oh-my-zsh.sh
 
