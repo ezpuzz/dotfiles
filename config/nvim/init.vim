@@ -14,16 +14,18 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'JulioJu/neovim-qt-colors-solarized-truecolor-only'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
+  Plug 'mhinz/vim-startify'
 
   " Linting
   Plug 'w0rp/ale'
 
   " completion
   Plug 'roxma/nvim-completion-manager'
-  Plug 'fgrsnau/ncm-otherbuf'
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
   Plug 'roxma/ncm-flow'
+  Plug 'calebeby/ncm-css'
+  Plug 'fgrsnau/ncm-otherbuf'
   Plug 'othree/csscomplete.vim', { 'for': ['css', 'jsx'] }
 
   " global vim commands
@@ -63,9 +65,13 @@ call plug#begin('~/.config/nvim/plugged')
   " react
   Plug 'flowtype/vim-flow'
   Plug 'mxw/vim-jsx'
+  Plug 'mhartington/nvim-typescript'
 
   " time tracking
   Plug 'wakatime/vim-wakatime'
+
+  " load fonts last
+  Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " 24-bit color themes
@@ -212,21 +218,27 @@ command! -nargs=+ Tg :T git <args>
 set nobackup
 set noswapfile
 
-" completion stuff
-set shortmess+=c
-inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
 set smartindent
 
 let g:plug_threads=32
+
+
+" completion stuff
+set shortmess+=c
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+imap <expr> <CR>  (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)" : "\<CR>")
+imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<Plug>(ultisnips_expand)":"\<CR>")
+
+let $NVIM_NCM_MULTI_THREAD = 1
 
 let g:UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
 let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
 let g:UltiSnipsRemoveSelectModeMappings = 0
+let g:UltiSnipsEditSplit = 'horizontal'
+let g:UltiSnipsSnippetsDir="~/.config/nvim/plugged/vim-snippets/UltiSnips"
 
 let g:gitgutter_map_keys = 0
 let g:gitgutter_grep_command = 'ag'
-
