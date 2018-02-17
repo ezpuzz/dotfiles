@@ -162,8 +162,6 @@ let g:formatters_java = ['custom_astyle_java']
 
 nnoremap <C-f> :Autoformat<CR>
 
-set nowrap
-
 set fdm=indent
 set foldnestmax=3
 set foldlevel=3

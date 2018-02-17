@@ -2,7 +2,7 @@
 	email = emory@heyzap.com
 	name = Emory Petermann
 [core]
-	editor = nvim
+	editor = nvim -u ~/.config/nvim/git.vim
 	pager = diff-so-fancy | less --tabs=4 -RFX
 [push]
 	default = simple
