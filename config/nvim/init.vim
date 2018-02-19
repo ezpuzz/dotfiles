@@ -15,12 +15,14 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'mhinz/vim-startify'
+  Plug 'chrisbra/Colorizer'
 
   " Linting
   Plug 'w0rp/ale'
 
   " completion
   Plug 'roxma/nvim-completion-manager'
+  Plug 'Shougo/neco-syntax'
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
   Plug 'roxma/ncm-flow'
@@ -40,7 +42,8 @@ call plug#begin('~/.config/nvim/plugged')
   " file format
   Plug 'editorconfig/editorconfig-vim'
   Plug 'Chiel92/vim-autoformat'
-  Plug 'godlygeek/tabular'
+  Plug 'junegunn/vim-easy-align'
+  Plug 'scrooloose/nerdcommenter'
 
   " file searching
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -57,6 +60,9 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tfnico/vim-gradle', { 'for': ['groovy'] }
   Plug 'elzr/vim-json', { 'for': ['json'] }
 
+  " html
+  Plug 'alvan/vim-closetag'
+
   " ruby / rails
   Plug 'tpope/vim-rails', { 'for': ['ruby'] }
   Plug 'tpope/vim-bundler', { 'for': ['ruby'] }
@@ -64,8 +70,15 @@ call plug#begin('~/.config/nvim/plugged')
 
   " react
   Plug 'flowtype/vim-flow'
+  Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
   Plug 'mhartington/nvim-typescript'
+
+  " python
+  Plug 'metakirby5/codi.vim', { 'for': ['python'] }
+
+  " syntax for everything else
+  Plug 'sheerun/vim-polyglot'
 
   " time tracking
   Plug 'wakatime/vim-wakatime'
@@ -159,6 +172,8 @@ endif
 
 let g:formatdef_custom_astyle_java = '"astyle --style=java --mode=java -pcHs4"'
 let g:formatters_java = ['custom_astyle_java']
+
+let mapleader=","
 
 nnoremap <C-f> :Autoformat<CR>
 
