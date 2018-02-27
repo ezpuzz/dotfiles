@@ -270,3 +270,9 @@ let g:user_emmet_settings = {
       \      'extends' : 'jsx',
       \  },
       \}
+
+let g:startify_fortune_use_unicode = 1
+let g:startify_change_to_vcs_root = 1
+function! StartifyEntryFormat()
+  return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
+endfunction
