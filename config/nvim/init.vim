@@ -2,89 +2,96 @@
 " Plugins
 call plug#begin('~/.config/nvim/plugged')
 
-  " terminal
-  Plug 'kassio/neoterm'
-  function! DoRemote(arg)
-    UpdateRemotePlugins
-  endfunction
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
 
-  " appearance
-  Plug 'jacoborus/tender.vim'
-  Plug 'altercation/vim-colors-solarized'
-  Plug 'JulioJu/neovim-qt-colors-solarized-truecolor-only'
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
-  Plug 'mhinz/vim-startify'
-  Plug 'chrisbra/Colorizer'
+" terminal
+Plug 'kassio/neoterm'
 
-  " Linting
-  Plug 'w0rp/ale'
+" default settings
+Plug 'tpope/vim-sensible'
 
-  " completion
-  Plug 'roxma/nvim-completion-manager'
-  Plug 'Shougo/neco-syntax'
-  Plug 'SirVer/ultisnips'
-  Plug 'honza/vim-snippets'
-  Plug 'roxma/ncm-flow'
-  Plug 'calebeby/ncm-css'
-  Plug 'fgrsnau/ncm-otherbuf'
-  Plug 'othree/csscomplete.vim', { 'for': ['css', 'jsx'] }
+" global commands
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-repeat'
+Plug 'justinmk/vim-sneak'
+Plug 'wellle/targets.vim'
+Plug 'terryma/vim-multiple-cursors'
 
-  " global vim commands
-  Plug 'tpope/vim-surround'
-  Plug 'tpope/vim-sensible'
-  Plug 'tpope/vim-unimpaired'
-  Plug 'tpope/vim-repeat'
-  Plug 'justinmk/vim-sneak'
-  Plug 'wellle/targets.vim'
-  Plug 'terryma/vim-multiple-cursors'
+" appearance
+Plug 'jacoborus/tender.vim'
+"Plug 'altercation/vim-colors-solarized'
+"Plug 'JulioJu/neovim-qt-colors-solarized-truecolor-only'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'mhinz/vim-startify'
+Plug 'chrisbra/Colorizer'
 
-  " file format
-  Plug 'editorconfig/editorconfig-vim'
-  Plug 'Chiel92/vim-autoformat'
-  Plug 'junegunn/vim-easy-align'
-  Plug 'scrooloose/nerdcommenter'
+" Code Style
+Plug 'editorconfig/editorconfig-vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'scrooloose/nerdcommenter'
 
-  " file searching
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plug 'mileszs/ack.vim'
+" Linting
+Plug 'w0rp/ale'
 
-  " source control
-  Plug 'tpope/vim-fugitive'
-  Plug 'airblade/vim-gitgutter'
+" Code Formatting
+Plug 'Chiel92/vim-autoformat'
 
-  " file types
-  Plug 'plasticboy/vim-markdown'
-  Plug 'kchmck/vim-coffee-script'
-  Plug 'mustache/vim-mustache-handlebars'
-  Plug 'tfnico/vim-gradle', { 'for': ['groovy'] }
-  Plug 'elzr/vim-json', { 'for': ['json'] }
+" completion
+Plug 'roxma/nvim-completion-manager'
+Plug 'fgrsnau/ncm-otherbuf'
+Plug 'Shougo/neco-syntax'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'roxma/ncm-flow', { 'for': ['javascript'] }
+Plug 'calebeby/ncm-css', { 'for': ['css', 'jsx'] }
+Plug 'othree/csscomplete.vim', { 'for': ['css', 'jsx'] }
 
-  " html
-  Plug 'alvan/vim-closetag'
+" file searching
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'mileszs/ack.vim'
 
-  " ruby / rails
-  Plug 'tpope/vim-rails', { 'for': ['ruby'] }
-  Plug 'tpope/vim-bundler', { 'for': ['ruby'] }
-  Plug 'vim-ruby/vim-ruby', { 'for': ['ruby'] }
+" source control
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
-  " react
-  Plug 'flowtype/vim-flow'
-  Plug 'pangloss/vim-javascript'
-  Plug 'mxw/vim-jsx'
-  Plug 'mhartington/nvim-typescript'
+" file types
+Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
+Plug 'kchmck/vim-coffee-script', { 'for': ['coffeescript'] }
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'tfnico/vim-gradle', { 'for': ['groovy'] }
+Plug 'elzr/vim-json', { 'for': ['json'] }
 
-  " python
-  Plug 'metakirby5/codi.vim', { 'for': ['python'] }
+" html
+Plug 'alvan/vim-closetag', { 'for': ['xml', 'html', 'jsx'] }
+Plug 'mattn/emmet-vim', { 'for': ['xml', 'html', 'jsx'] }
 
-  " syntax for everything else
-  Plug 'sheerun/vim-polyglot'
+" ruby / rails
+Plug 'tpope/vim-rails', { 'for': ['ruby'] }
+Plug 'tpope/vim-bundler', { 'for': ['ruby'] }
+Plug 'vim-ruby/vim-ruby', { 'for': ['ruby'] }
 
-  " time tracking
-  Plug 'wakatime/vim-wakatime'
+" react
+Plug 'flowtype/vim-flow', { 'for': ['javascript'] }
+Plug 'pangloss/vim-javascript', { 'for': ['javascript'] }
+Plug 'mxw/vim-jsx', { 'for': ['javascript'] }
+Plug 'mhartington/nvim-typescript', { 'for': ['javascript'] }
 
-  " load fonts last
-  Plug 'ryanoasis/vim-devicons'
+" python
+Plug 'metakirby5/codi.vim', { 'for': ['python'] }
+
+" syntax for everything else
+Plug 'sheerun/vim-polyglot'
+
+" time tracking
+Plug 'wakatime/vim-wakatime'
+
+" IMPORTANT: load fonts last
+Plug 'ryanoasis/vim-devicons'
+
 call plug#end()
 
 " 24-bit color themes
@@ -175,7 +182,9 @@ let g:formatters_java = ['custom_astyle_java']
 
 let mapleader=","
 
+" format on write
 nnoremap <C-f> :Autoformat<CR>
+au BufWrite * :Autoformat
 
 set fdm=indent
 set foldnestmax=3
@@ -185,7 +194,7 @@ autocmd FileType ruby compiler ruby
 
 set wildmode=longest,list,full
 
-let g:ackprg = "rg --vimgrep"
+let g:ackprg = "ag --vimgrep"
 
 if has ("win32")
   let g:neoterm_eof = "\r"
@@ -247,11 +256,17 @@ imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<Plug>(ultisnips
 let $NVIM_NCM_MULTI_THREAD = 1
 
 let g:UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
-let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
-let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
+let g:UltiSnipsJumpForwardTrigger = "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger  = "<c-k>"
 let g:UltiSnipsRemoveSelectModeMappings = 0
 let g:UltiSnipsEditSplit = 'horizontal'
 let g:UltiSnipsSnippetsDir="~/.config/nvim/plugged/vim-snippets/UltiSnips"
 
 let g:gitgutter_map_keys = 0
 let g:gitgutter_grep_command = 'ag'
+
+let g:user_emmet_settings = {
+      \  'javascript.jsx' : {
+      \      'extends' : 'jsx',
+      \  },
+      \}
