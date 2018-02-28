@@ -8,6 +8,8 @@ endfunction
 
 " terminal
 Plug 'kassio/neoterm'
+Plug 'skywind3000/asyncrun.vim'
+Plug 'janko-m/vim-test'
 
 " default settings
 Plug 'tpope/vim-sensible'
@@ -196,21 +198,23 @@ set wildmode=longest,list,full
 
 let g:ackprg = "ag --vimgrep"
 
-if has ("win32")
-  let g:neoterm_eof = "\r"
-endif
 let g:neoterm_position = 'horizontal'
 let g:neoterm_automap_keys = ',tt'
 
+" REPL mappings
 nnoremap <silent> <f10> :TREPLSendFile<cr>
-nnoremap <silent> <f9> :TREPLSend<cr>
-vnoremap <silent> <f9> :TREPLSend<cr>
+nnoremap <silent> <f9> :TREPLSendLine<cr>
+vnoremap <silent> <f9> :TREPLSendSelection<cr>
+
+nmap gx <Plug>(neoterm-repl-send)
+xmap gx <Plug>(neoterm-repl-send)
+nmap gxx <Plug>(neoterm-repl-send-line)
 
 " run set test lib
-nnoremap <silent> ,rt :call neoterm#test#run('all')<cr>
-nnoremap <silent> ,rf :call neoterm#test#run('file')<cr>
-nnoremap <silent> ,rn :call neoterm#test#run('current')<cr>
-nnoremap <silent> ,rr :call neoterm#test#rerun()<cr>
+nnoremap <silent> ,rt :TestNearest<cr>
+nnoremap <silent> ,rf :TestFile<cr>
+nnoremap <silent> ,rn :TestNearest<cr>
+nnoremap <silent> ,rr :TestLast<cr>
 
 " Useful maps
 " hide/close terminal
@@ -271,8 +275,17 @@ let g:user_emmet_settings = {
       \  },
       \}
 
+" Startify
 let g:startify_fortune_use_unicode = 1
 let g:startify_change_to_vcs_root = 1
 function! StartifyEntryFormat()
   return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
 endfunction
+
+" AsyncRun
+command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
+let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
+
+" vim-test
+let test#strategy = 'asyncrun'
