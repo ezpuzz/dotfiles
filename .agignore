@@ -1,0 +1,14 @@
+**.min.js
+**.min.css
+**.pack.js
+public/legacy/*.js
+public/legacy/**.js
+public/legacy/**/**.js
+app/assets/fonts/*.js
+app/assets/fonts/*.css
+app/assets/fonts/**/**.js
+app/assets/fonts/**/**.css
+app/assets/fonts/**/**/*.js
+app/assets/fonts/**/**/*.css
+app/assets/fonts/**/**/**.js
+app/assets/fonts/**/**/**.css

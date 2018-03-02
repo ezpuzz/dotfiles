@@ -20,6 +20,9 @@ export LANG=en_US.UTF-8
 
 alias ls='ls --color=auto'
 alias lg='git lg'
+alias ag='ag --path-to-ignore ~/.agignore'
+alias rs='rails s'
+alias gpr='hub pull-request'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
