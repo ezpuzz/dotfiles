@@ -18,7 +18,7 @@ source $HOME/.rvm/scripts/rvm
 
 export LANG=en_US.UTF-8
 
-alias ls='ls --color=auto'
+#alias ls='ls --color=auto'
 alias lg='git lg'
 alias ag='ag --path-to-ignore ~/.agignore'
 alias rs='rails s'
@@ -26,7 +26,13 @@ alias gpr='hub pull-request'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-eval `dircolors ~/dotfiles/LS_COLORS`
+system_type=$(uname -s)
+if [ "$system_type" = "Darwin" ]; then
+  eval $(gdircolors $HOME/.LS_COLORS)
+  alias ls='gls --color=auto'
+else
+  eval $(dircolors -b $HOME/.LS_COLORS)
+fi
 
 # FZF + fd
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
@@ -118,36 +124,6 @@ ulimit -n 65536
 ulimit -u 2048
 
 export STUDIO_JDK=/Library/Java/JavaVirtualMachines/jdk1.8.0_102.jdk/Contents/Home
-
-# Make less the default pager, add some options and enable syntax highlight using source-highlight
-LESSPIPE=`which /usr/share/source-highlight/src-hilite-lesspipe.sh`
-[ -n "$LESSPIPE" ] && export LESSOPEN="| ${LESSPIPE} %s"
-less_options=(
-# If the entire text fits on one screen, just show it and quit. (Be more
-# like "cat" and less like "more".)
---quit-if-one-screen
-
-# Do not clear the screen first.
---no-init
-
-# Like "smartcase" in Vim: ignore case unless the search pattern is mixed.
---ignore-case
-
-# Do not automatically wrap long lines.
---chop-long-lines
-
-# Allow ANSI colour escapes, but no other escapes.
---RAW-CONTROL-CHARS
-
-# Do not ring the bell when trying to scroll past the end of the buffer.
---quiet
-
-# Do not complain when we are on a dumb terminal.
---dumb
-);
-export LESS="${less_options[*]}"
-export PAGER='less'
-export MANPAGER="less -X"
 
 # "Windows subsystem for Linux" workarounds
 
