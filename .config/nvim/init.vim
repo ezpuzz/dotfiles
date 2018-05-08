@@ -86,7 +86,7 @@ Plug 'mhartington/nvim-typescript', { 'for': ['javascript'] }
 Plug 'metakirby5/codi.vim', { 'for': ['python'] }
 
 " syntax for everything else
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 
 " time tracking
 Plug 'wakatime/vim-wakatime'
@@ -135,9 +135,9 @@ set cursorline
 set modelines=0
 
 " Whitespace
-set wrap
+set nowrap
 set textwidth=100
-set formatoptions+=tcqln1j
+set formatoptions+=cqln1j
 set expandtab
 
 " editorconfig will take care of indentation
@@ -169,7 +169,10 @@ set mouse=a
 set clipboard=unnamedplus
 
 nnoremap <C-p> :FZF<CR>
-
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 
 " persisten undo
 set undofile
@@ -186,7 +189,7 @@ let mapleader=","
 
 " format on write
 nnoremap <C-f> :Autoformat<CR>
-au BufWrite * :Autoformat
+" au BufWrite * :Autoformat
 
 set fdm=indent
 set foldnestmax=3
@@ -198,7 +201,6 @@ set wildmode=longest,list,full
 
 let g:ackprg = "ag --vimgrep"
 
-let g:neoterm_position = 'horizontal'
 let g:neoterm_automap_keys = ',tt'
 
 " REPL mappings
@@ -211,10 +213,10 @@ xmap gx <Plug>(neoterm-repl-send)
 nmap gxx <Plug>(neoterm-repl-send-line)
 
 " run set test lib
-nnoremap <silent> ,rt :TestNearest<cr>
-nnoremap <silent> ,rf :TestFile<cr>
-nnoremap <silent> ,rn :TestNearest<cr>
-nnoremap <silent> ,rr :TestLast<cr>
+nnoremap <silent> ,rt :wa<cr>:TestNearest<cr>
+nnoremap <silent> ,rf :wa<cr>:TestFile<cr>
+nnoremap <silent> ,rn :wa<cr>:TestNearest<cr>
+nnoremap <silent> ,rr :wa<cr>:TestLast<cr>
 
 " Useful maps
 " hide/close terminal
@@ -289,3 +291,13 @@ let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status
 
 " vim-test
 let test#strategy = 'asyncrun'
+
+let g:airline#extensions#ale#enabled = 1
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+let g:ale_fixers = {
+\  'javascript': ['prettier-eslint'],
+\}
+
+let g:ale_completion_enabled = 0
+let g:ale_fix_on_save = 1
