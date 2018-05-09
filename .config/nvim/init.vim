@@ -1,10 +1,12 @@
+" Install vim-plug if missing
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 " Plugins
 call plug#begin('~/.config/nvim/plugged')
-
-function! DoRemote(arg)
-  UpdateRemotePlugins
-endfunction
 
 " terminal
 Plug 'kassio/neoterm'
@@ -49,7 +51,6 @@ Plug 'autozimu/LanguageClient-neovim', {
       \ }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-syntax'
-Plug 'thalasmello/webcomplete.vim'
 Plug 'fszymanski/deoplete-emoji'
 
 Plug 'SirVer/ultisnips'
@@ -252,17 +253,6 @@ set smartindent
 " vim-plug
 let g:plug_threads=32
 
-" deoplete
-let g:deoplete#enable_at_startup = 1
-
-" UltiSnips
-let g:UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
-let g:UltiSnipsJumpForwardTrigger = "<c-j>"
-let g:UltiSnipsJumpBackwardTrigger  = "<c-k>"
-let g:UltiSnipsRemoveSelectModeMappings = 0
-let g:UltiSnipsEditSplit = 'horizontal'
-let g:UltiSnipsSnippetsDir="~/.config/nvim/plugged/vim-snippets/UltiSnips"
-
 " gitgutter
 let g:gitgutter_map_keys = 0
 let g:gitgutter_grep = 'rg'
@@ -295,7 +285,5 @@ let g:ale_fix_on_save = 1
 " set system python to ignore virtualenv
 let g:python_host_prog = "/usr/local/bin/python"
 
-" LanguageClient
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+source $HOME/.config/nvim/deoplete.vim
