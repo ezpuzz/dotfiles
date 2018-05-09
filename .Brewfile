@@ -16,5 +16,6 @@ brew "openssl"
 brew "ripgrep"
 brew "diff-so-fancy"
 brew "python3"
+brew "gpg"
 
 cask "kitty"

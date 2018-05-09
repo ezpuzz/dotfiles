@@ -2,9 +2,26 @@
 " deoplete
 let g:deoplete#enable_at_startup = 1
 
+" one process per completion source
 call deoplete#custom#option({
-      \  'num_processes': 0
+      \  'num_processes': 0,
+      \  'sources':  {
+      \    '_': ['buffer', 'omni'],
+      \    'gitcommit': ['buffer', 'emoji', 'omni']
+      \  },
+      \  'omni_patterns': {
+      \    'gitcommit': ['\#', '@'],
+      \  }
       \})
+
+call deoplete#custom#var('omni', 'input_patterns', {
+      \  'gitcommit': ['\#']
+      \})
+
+call deoplete#custom#source('buffer', 'require_same_filetype', v:false)
+
+" close preview window after completion
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " completion on tab
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
