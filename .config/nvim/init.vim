@@ -49,6 +49,8 @@ Plug 'autozimu/LanguageClient-neovim', {
       \ }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-syntax'
+Plug 'thalasmello/webcomplete.vim'
+Plug 'fszymanski/deoplete-emoji'
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -249,6 +251,9 @@ set smartindent
 
 " vim-plug
 let g:plug_threads=32
+
+" deoplete
+let g:deoplete#enable_at_startup = 1
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
