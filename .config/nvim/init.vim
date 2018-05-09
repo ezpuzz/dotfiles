@@ -43,14 +43,15 @@ Plug 'w0rp/ale'
 Plug 'Chiel92/vim-autoformat'
 
 " completion
-Plug 'roxma/nvim-completion-manager'
-Plug 'fgrsnau/ncm-otherbuf'
+Plug 'autozimu/LanguageClient-neovim', {
+      \ 'branch': 'next',
+      \ 'do': 'bash install.sh',
+      \ }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-syntax'
+
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'roxma/ncm-flow', { 'for': ['javascript'] }
-Plug 'calebeby/ncm-css', { 'for': ['css', 'jsx'] }
-Plug 'othree/csscomplete.vim', { 'for': ['css', 'jsx'] }
 
 " file searching
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -288,3 +289,8 @@ let g:ale_fix_on_save = 1
 
 " set system python to ignore virtualenv
 let g:python_host_prog = "/usr/local/bin/python"
+
+" LanguageClient
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
