@@ -178,8 +178,8 @@ autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 set undofile
 
 " better grepping
-if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor
+if executable('rg')
+  set grepprg=rg\ --nogroup\ --nocolor
 endif
 
 let g:formatdef_custom_astyle_java = '"astyle --style=java --mode=java -pcHs4"'
@@ -199,9 +199,7 @@ autocmd FileType ruby compiler ruby
 
 set wildmode=longest,list,full
 
-let g:ackprg = "ag --vimgrep"
-
-let g:neoterm_automap_keys = ',tt'
+let g:ackprg = "rg --vimgrep"
 
 " REPL mappings
 nnoremap <silent> <f10> :TREPLSendFile<cr>
@@ -248,19 +246,10 @@ set noswapfile
 
 set smartindent
 
+" vim-plug
 let g:plug_threads=32
 
-
-" completion stuff
-set shortmess+=c
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-imap <expr> <CR>  (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)" : "\<CR>")
-imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<Plug>(ultisnips_expand)":"\<CR>")
-
-let $NVIM_NCM_MULTI_THREAD = 1
-
+" UltiSnips
 let g:UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger  = "<c-k>"
@@ -268,14 +257,9 @@ let g:UltiSnipsRemoveSelectModeMappings = 0
 let g:UltiSnipsEditSplit = 'horizontal'
 let g:UltiSnipsSnippetsDir="~/.config/nvim/plugged/vim-snippets/UltiSnips"
 
+" gitgutter
 let g:gitgutter_map_keys = 0
-let g:gitgutter_grep_command = 'ag'
-
-let g:user_emmet_settings = {
-      \  'javascript.jsx' : {
-      \      'extends' : 'jsx',
-      \  },
-      \}
+let g:gitgutter_grep = 'rg'
 
 " Startify
 let g:startify_fortune_use_unicode = 1
@@ -292,12 +276,15 @@ let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status
 " vim-test
 let test#strategy = 'asyncrun'
 
+" ALE linting
 let g:airline#extensions#ale#enabled = 1
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 let g:ale_fixers = {
 \  'javascript': ['prettier-eslint'],
 \}
-
 let g:ale_completion_enabled = 0
 let g:ale_fix_on_save = 1
+
+" set system python to ignore virtualenv
+let g:python_host_prog = "/usr/local/bin/python"

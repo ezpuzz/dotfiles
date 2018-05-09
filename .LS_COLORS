@@ -697,6 +697,7 @@ TERM screen.rxvt
 TERM terminator
 TERM vt100
 TERM xterm
+TERM xterm-kitty
 TERM xterm-16color
 TERM xterm-256color
 TERM xterm-88color

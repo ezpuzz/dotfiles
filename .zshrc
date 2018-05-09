@@ -7,7 +7,7 @@ HYPHEN_INSENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(git bundler rake ruby rails gem per-directory-history zsh-syntax-highlighting)
+plugins=(git bundler rake ruby gem per-directory-history zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
