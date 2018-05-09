@@ -51,6 +51,7 @@ Plug 'autozimu/LanguageClient-neovim', {
       \ }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-syntax'
+Plug 'Shougo/neco-vim'
 Plug 'fszymanski/deoplete-emoji'
 
 Plug 'SirVer/ultisnips'
@@ -63,6 +64,7 @@ Plug 'mileszs/ack.vim'
 " source control
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-rhubarb'
 
 " file types
 Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }

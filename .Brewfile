@@ -5,6 +5,7 @@ tap "caskroom/cask"
 tap "crisidev/homebrew-chunkwm"
 
 brew "git"
+brew "hub"
 brew "yadm"
 brew "chunkwm", args: ["HEAD"]
 brew "curl", args: ["with-c-ares", "with-nghttp2"]
