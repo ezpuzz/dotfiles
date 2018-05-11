@@ -49,10 +49,11 @@ Plug 'autozimu/LanguageClient-neovim', {
       \ 'branch': 'next',
       \ 'do': 'bash install.sh',
       \ }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'ezpuzz/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-syntax'
 Plug 'Shougo/neco-vim'
-Plug 'fszymanski/deoplete-emoji'
+Plug 'ezpuzz/deoplete-emoji', { 'branch': 'submodule-emojis' }
+Plug 'zchee/deoplete-jedi'
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -263,7 +264,7 @@ let g:gitgutter_grep = 'rg'
 let g:startify_fortune_use_unicode = 1
 let g:startify_change_to_vcs_root = 1
 function! StartifyEntryFormat()
-  return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
+  return 'WebDevIconsGetFileTypeSymbol(absolute_path) ."  ". entry_path'
 endfunction
 
 " AsyncRun

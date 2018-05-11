@@ -2,6 +2,7 @@
 tap "homebrew/services"
 tap "domt4/autoupdate"
 tap "caskroom/cask"
+tap "caskroom/fonts"
 tap "crisidev/homebrew-chunkwm"
 
 brew "git"
@@ -19,3 +20,4 @@ brew "python3"
 brew "gpg"
 
 cask "kitty"
+cask "font-inconsolata-nerd-font"
