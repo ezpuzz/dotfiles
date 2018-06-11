@@ -1,5 +1,5 @@
 [user]
-	email = emory@heyzap.com
+	email = epetermann@neighborly.com
 	name = Emory Petermann
 [core]
 	editor = nvim -u ~/.config/nvim/git.vim
