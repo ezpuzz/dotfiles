@@ -18,6 +18,8 @@ brew "ripgrep"
 brew "diff-so-fancy"
 brew "python3"
 brew "gpg"
+brew "htop"
+brew "coreutils"
 
 cask "kitty"
 cask "font-inconsolata-nerd-font"

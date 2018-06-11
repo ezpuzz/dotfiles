@@ -28,19 +28,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-bundler'
   Plug 'vim-ruby/vim-ruby'
   Plug 'mileszs/ack.vim'
-  Plug 'kassio/neoterm', { 'commit': '9e33da0a' }
-  function! DoRemote(arg)
-    UpdateRemotePlugins
-  endfunction
-  Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
   Plug 'terryma/vim-multiple-cursors'
 call plug#end()
-
-" Turn on syntax highlighting
-syntax on
-
-" For plugins to load correctly
-filetype plugin indent on
 
 " Security
 set modelines=0
@@ -148,10 +137,10 @@ set foldlevel=1
 set foldnestmax=3
 set scrolloff=10
 
-set backup 
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp 
-set backupskip=/tmp/*,/private/tmp/* 
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp 
+set backup
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set backupskip=/tmp/*,/private/tmp/*
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set writebackup
 
 set guifont=Hack
@@ -204,24 +193,6 @@ command! Tmigrate :T rake db:migrate
 " Git commands
 command! -nargs=+ Tg :T git <args>
 
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
-inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#manual_complete()
-
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
-
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function() abort
-  return deoplete#close_popup() . "\<CR>"
-endfunction
-
-:tnoremap <A-h> <C-\><C-n><C-w>h
-:tnoremap <A-j> <C-\><C-n><C-w>j
-:tnoremap <A-k> <C-\><C-n><C-w>k
-:tnoremap <A-l> <C-\><C-n><C-w>l
 :nnoremap <A-h> <C-w>h
 :nnoremap <A-j> <C-w>j
 :nnoremap <A-k> <C-w>k

@@ -120,7 +120,7 @@ function removeFromPath() {
   export PATH=$(echo $PATH | sed -E -e "s;:$1;;" -e "s;$1:?;;")
 }
 
-ulimit -n 65536
+ulimit -n 1024
 ulimit -u 2048
 
 export STUDIO_JDK=/Library/Java/JavaVirtualMachines/jdk1.8.0_102.jdk/Contents/Home
@@ -149,3 +149,6 @@ v() {
       [ -f "${line/\~/$HOME}" ] && echo "$line"
     done | fzf-tmux -d -m -q "$*" -1) && vim ${files//\~/$HOME}
   }
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
