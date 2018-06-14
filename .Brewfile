@@ -20,6 +20,7 @@ brew "python3"
 brew "gpg"
 brew "htop"
 brew "coreutils"
+brew "fd"
 
 cask "kitty"
 cask "font-inconsolata-nerd-font"

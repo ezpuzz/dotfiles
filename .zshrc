@@ -23,6 +23,7 @@ alias lg='git lg'
 alias ag='ag --path-to-ignore ~/.agignore'
 alias rs='rails s'
 alias gpr='hub pull-request'
+alias vim='nvim'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

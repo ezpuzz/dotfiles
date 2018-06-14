@@ -287,6 +287,7 @@ let g:ale_fix_on_save = 1
 
 " set system python to ignore virtualenv
 let g:python_host_prog = "/usr/local/bin/python"
+let g:python3_host_prog = "/usr/local/bin/python3"
 
 
 source $HOME/.config/nvim/deoplete.vim
