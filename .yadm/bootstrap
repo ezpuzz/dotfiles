@@ -30,3 +30,5 @@ gpg --keyserver hkp://pgp.mit.edu --recv-keys 409B6B1796C275462A1703113804BB82D3
 \curl -sSL https://get.rvm.io | bash
 
 ln -s /Applications/kitty.app/Contents/Frameworks/kitty/terminfo ~/.terminfo
+
+brew services start skhd

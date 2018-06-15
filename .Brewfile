@@ -4,11 +4,13 @@ tap "domt4/autoupdate"
 tap "caskroom/cask"
 tap "caskroom/fonts"
 tap "crisidev/homebrew-chunkwm"
+tap "koekeishiya/formulae"
 
 brew "git"
 brew "hub"
 brew "yadm"
 brew "chunkwm", args: ["HEAD"]
+brew "skhd", args: ["HEAD"]
 brew "curl", args: ["with-c-ares", "with-nghttp2"]
 brew "neovim", args: ["HEAD"]
 brew "mp3val"
