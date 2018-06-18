@@ -24,6 +24,8 @@ alias ag='ag --path-to-ignore ~/.agignore'
 alias rs='rails s'
 alias gpr='hub pull-request'
 alias vim='nvim'
+alias yc='yadm commit -v'
+alias make='make -j8'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
