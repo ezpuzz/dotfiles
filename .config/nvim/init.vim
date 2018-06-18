@@ -26,6 +26,7 @@ Plug 'terryma/vim-multiple-cursors'
 
 " appearance
 Plug 'jacoborus/tender.vim'
+Plug 'morhetz/gruvbox'
 "Plug 'altercation/vim-colors-solarized'
 "Plug 'JulioJu/neovim-qt-colors-solarized-truecolor-only'
 Plug 'vim-airline/vim-airline'
@@ -92,6 +93,9 @@ Plug 'mhartington/nvim-typescript', { 'for': ['javascript'] }
 " python
 Plug 'metakirby5/codi.vim', { 'for': ['python'] }
 
+" Docker
+Plug 'ekalinin/Dockerfile.vim'
+
 " syntax for everything else
 " Plug 'sheerun/vim-polyglot'
 
@@ -122,12 +126,14 @@ set background=dark
 " let g:solarized_bold=0
 " colorscheme solarized
 
-colorscheme tender
+" colorscheme tender
+colorscheme gruvbox
 
 " use fancy airline fonts
 let g:airline_powerline_fonts = 1
 " let g:airline_solarized_bg='dark'
-let g:airline_theme='tenderplus'
+" let g:airline_theme='tenderplus'
+let g:airline_theme='gruvbox'
 
 " Show line numbers
 set number
@@ -257,8 +263,16 @@ set smartindent
 let g:plug_threads=32
 
 " gitgutter
+set updatetime=100
 let g:gitgutter_map_keys = 0
-let g:gitgutter_grep = 'rg'
+let g:gitgutter_grep = 'rg --color=never'
+" these signs replicated from gitgutter help file
+let g:gitgutter_sign_added              = '+'
+let g:gitgutter_sign_modified           = '~'
+let g:gitgutter_sign_removed            = '_'
+let g:gitgutter_sign_removed_first_line = '‾'
+let g:gitgutter_sign_modified_removed   = '~_'
+let g:gitgutter_override_sign_column_highlight = 0
 
 " Startify
 let g:startify_fortune_use_unicode = 1

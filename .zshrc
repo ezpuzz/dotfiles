@@ -7,7 +7,7 @@ HYPHEN_INSENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(git bundler rake ruby gem per-directory-history zsh-syntax-highlighting)
+plugins=(git bundler rake ruby gem per-directory-history zsh-syntax-highlighting yarn)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -153,3 +153,4 @@ v() {
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="$PATH:$HOME/flutter/bin"
