@@ -26,6 +26,10 @@ alias gpr='hub pull-request'
 alias vim='nvim'
 alias yc='yadm commit -v'
 alias make='make -j8'
+alias lc='colorls -lA --sd'
+
+#ember aliases
+alias ei='ember install --yarn'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
