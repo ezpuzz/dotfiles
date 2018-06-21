@@ -42,9 +42,6 @@ Plug 'scrooloose/nerdcommenter'
 " Linting
 Plug 'w0rp/ale'
 
-" Code Formatting
-Plug 'Chiel92/vim-autoformat'
-
 " completion
 Plug 'autozimu/LanguageClient-neovim', {
       \ 'branch': 'next',
@@ -75,9 +72,13 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'tfnico/vim-gradle', { 'for': ['groovy'] }
 Plug 'elzr/vim-json', { 'for': ['json'] }
 
+" ember
+Plug 'joukevandermaas/vim-ember-hbs'
+Plug 'AndrewRadev/ember_tools.vim'
+
 " html
-Plug 'alvan/vim-closetag', { 'for': ['xml', 'html', 'jsx'] }
-Plug 'mattn/emmet-vim', { 'for': ['xml', 'html', 'jsx'] }
+Plug 'alvan/vim-closetag', { 'for': ['xml', 'html.handlebars', 'html', 'jsx'] }
+Plug 'mattn/emmet-vim', { 'for': ['xml', 'html.handlebars', 'html', 'jsx'] }
 
 " ruby / rails
 Plug 'tpope/vim-rails', { 'for': ['ruby'] }
@@ -181,6 +182,7 @@ set showmatch
 set mouse=a
 set clipboard=unnamedplus
 
+" fzf
 nnoremap <C-p> :FZF<CR>
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
@@ -199,10 +201,6 @@ let g:formatdef_custom_astyle_java = '"astyle --style=java --mode=java -pcHs4"'
 let g:formatters_java = ['custom_astyle_java']
 
 let mapleader=","
-
-" format on write
-nnoremap <C-f> :Autoformat<CR>
-" au BufWrite * :Autoformat
 
 set fdm=indent
 set foldnestmax=3
@@ -294,7 +292,7 @@ let g:airline#extensions#ale#enabled = 1
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 let g:ale_fixers = {
-\  'javascript': ['prettier-eslint'],
+\  'javascript': ['prettier', 'eslint'],
 \}
 let g:ale_completion_enabled = 0
 let g:ale_fix_on_save = 1
@@ -302,6 +300,24 @@ let g:ale_fix_on_save = 1
 " set system python to ignore virtualenv
 let g:python_host_prog = "/usr/local/bin/python"
 let g:python3_host_prog = "/usr/local/bin/python3"
+
+" mustache
+let g:mustache_abbreviations = 1
+
+" hex colors
+let g:colorizer_auto_filetype = 'javascript.jsx,css,html,sass,scss'
+let g:colorizer_fgcontrast = -1
+let g:colorizer_colornames = 0
+
+" split navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" closetag
+let g:closetag_filenames = '*.html,*.hbs'
+let g:closetag_filetypes = 'html,html.handlebars'
 
 
 source $HOME/.config/nvim/deoplete.vim

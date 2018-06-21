@@ -64,14 +64,6 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 
-# fbr - checkout git branch
-fbr() {
-  local branches branch
-  branches=$(git branch -vv) &&
-    branch=$(echo "$branches" | fzf +m) &&
-    git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
-}
-
 # fbr - checkout git branch (including remote branches)
 fbr() {
   local branches branch
