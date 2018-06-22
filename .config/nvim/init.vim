@@ -23,6 +23,7 @@ Plug 'tpope/vim-repeat'
 Plug 'justinmk/vim-sneak'
 Plug 'wellle/targets.vim'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-projectionist'
 
 " appearance
 Plug 'jacoborus/tender.vim'
@@ -289,8 +290,8 @@ let test#strategy = 'asyncrun'
 
 " ALE linting
 let g:airline#extensions#ale#enabled = 1
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
+nmap <silent> [[ <Plug>(ale_previous_wrap)
+nmap <silent> ]] <Plug>(ale_next_wrap)
 let g:ale_fixers = {
 \  'javascript': ['prettier', 'eslint'],
 \}
