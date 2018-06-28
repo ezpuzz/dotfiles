@@ -62,7 +62,6 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 #export ANDROID_HOME=/Users/emorypetermann/Library/Android/sdk
 #export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$PATH"
 
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 
 # fbr - checkout git branch (including remote branches)
 fbr() {
@@ -153,3 +152,4 @@ v() {
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:$HOME/flutter/bin"
 export PATH="$PATH:$HOME/Library/Haskell/bin"
+export PATH="$PATH:$HOME/.local/bin"

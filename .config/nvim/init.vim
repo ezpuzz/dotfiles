@@ -87,16 +87,17 @@ Plug 'tpope/vim-bundler', { 'for': ['ruby'] }
 Plug 'vim-ruby/vim-ruby', { 'for': ['ruby'] }
 
 " react
-Plug 'flowtype/vim-flow', { 'for': ['javascript'] }
+" Plug 'flowtype/vim-flow', { 'for': ['javascript'] }
 Plug 'pangloss/vim-javascript', { 'for': ['javascript'] }
-Plug 'mxw/vim-jsx', { 'for': ['javascript'] }
-Plug 'mhartington/nvim-typescript', { 'for': ['javascript'] }
+" Plug 'mxw/vim-jsx', { 'for': ['javascript'] }
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'mhartington/nvim-typescript', {'for': ['typescript', 'tsx'], 'do': './install.sh' }
 
 " python
 Plug 'metakirby5/codi.vim', { 'for': ['python'] }
 
 " Docker
-Plug 'ekalinin/Dockerfile.vim'
+Plug 'ekalinin/Dockerfile.vim', { 'for': ['Dockerfile'] }
 
 " syntax for everything else
 " Plug 'sheerun/vim-polyglot'
@@ -294,7 +295,12 @@ nmap <silent> [[ <Plug>(ale_previous_wrap)
 nmap <silent> ]] <Plug>(ale_next_wrap)
 let g:ale_fixers = {
 \  'javascript': ['prettier', 'eslint'],
+\  'typescript': ['tslint', 'prettier'],
 \}
+let g:ale_linters = {
+      \'javascript': ['eslint'],
+      \'typescript': ['tslint', 'tsserver', 'typecheck'],
+      \}
 let g:ale_completion_enabled = 0
 let g:ale_fix_on_save = 1
 
@@ -319,6 +325,5 @@ nnoremap <C-H> <C-W><C-H>
 " closetag
 let g:closetag_filenames = '*.html,*.hbs'
 let g:closetag_filetypes = 'html,html.handlebars'
-
 
 source $HOME/.config/nvim/deoplete.vim
