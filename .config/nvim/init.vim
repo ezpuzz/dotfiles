@@ -8,13 +8,15 @@ endif
 " Plugins
 call plug#begin('~/.config/nvim/plugged')
 
+" good default settings
+Plug 'tpope/vim-sensible'
+
 " terminal
 Plug 'kassio/neoterm'
+
+" run tests within vim
 Plug 'skywind3000/asyncrun.vim'
 Plug 'janko-m/vim-test'
-
-" default settings
-Plug 'tpope/vim-sensible'
 
 " global commands
 Plug 'tpope/vim-surround'
@@ -54,6 +56,7 @@ Plug 'Shougo/neco-vim'
 Plug 'ezpuzz/deoplete-emoji', { 'branch': 'submodule-emojis' }
 Plug 'zchee/deoplete-jedi'
 
+" TODO: use these with deoplete more
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
@@ -64,17 +67,17 @@ Plug 'mileszs/ack.vim'
 " source control
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-rhubarb' " issue numbers and mentions in git commit messages
 
 " file types
 Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
 Plug 'kchmck/vim-coffee-script', { 'for': ['coffeescript'] }
-Plug 'mustache/vim-mustache-handlebars'
 Plug 'tfnico/vim-gradle', { 'for': ['groovy'] }
 Plug 'elzr/vim-json', { 'for': ['json'] }
 
 " ember
-Plug 'joukevandermaas/vim-ember-hbs'
+Plug 'mustache/vim-mustache-handlebars', { 'for': ['html.handlebars'] }
+Plug 'joukevandermaas/vim-ember-hbs', { 'for': ['html.handlebars'] }
 Plug 'AndrewRadev/ember_tools.vim'
 
 " html
@@ -86,21 +89,21 @@ Plug 'tpope/vim-rails', { 'for': ['ruby'] }
 Plug 'tpope/vim-bundler', { 'for': ['ruby'] }
 Plug 'vim-ruby/vim-ruby', { 'for': ['ruby'] }
 
-" react
-" Plug 'flowtype/vim-flow', { 'for': ['javascript'] }
+" js
 Plug 'pangloss/vim-javascript', { 'for': ['javascript'] }
-" Plug 'mxw/vim-jsx', { 'for': ['javascript'] }
+Plug 'carlitux/deoplete-ternjs', { 'do': 'yarn global add tern' }
+
+" react
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'mhartington/nvim-typescript', {'for': ['typescript', 'tsx'], 'do': './install.sh' }
+" Plug 'flowtype/vim-flow', { 'for': ['javascript'] }
+" Plug 'mxw/vim-jsx', { 'for': ['javascript'] }
 
 " python
 Plug 'metakirby5/codi.vim', { 'for': ['python'] }
 
 " Docker
 Plug 'ekalinin/Dockerfile.vim', { 'for': ['Dockerfile'] }
-
-" syntax for everything else
-" Plug 'sheerun/vim-polyglot'
 
 " time tracking
 Plug 'wakatime/vim-wakatime'
