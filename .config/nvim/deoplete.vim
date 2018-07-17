@@ -18,6 +18,7 @@ call deoplete#custom#option({
 
 " use words from all buffers
 call deoplete#custom#var('buffer', 'require_same_filetype', v:false)
+call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
 
 " close preview window after completion
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -37,3 +38,7 @@ let g:UltiSnipsSnippetsDir="~/.config/nvim/plugged/vim-snippets/UltiSnips"
 nnoremap <silent> <leader>lk :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> <leader>ld :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <leader>lr :call LanguageClient#textDocument_rename()<CR>
+
+" Tern
+let g:deoplete#sources#ternjs#types = 1
+let g:deoplete#sources#ternjs#depths = 1

@@ -42,6 +42,9 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/nerdcommenter'
 
+" Docs
+Plug 'rizzatti/dash.vim'
+
 " Linting
 Plug 'w0rp/ale'
 
@@ -70,10 +73,13 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-rhubarb' " issue numbers and mentions in git commit messages
 
 " file types
-Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
 Plug 'kchmck/vim-coffee-script', { 'for': ['coffeescript'] }
 Plug 'tfnico/vim-gradle', { 'for': ['groovy'] }
 Plug 'elzr/vim-json', { 'for': ['json'] }
+
+" markdown
+Plug 'gabrielelana/vim-markdown', { 'for': ['markdown'] }
+Plug 'shime/vim-livedown', { 'for': ['markdown'] }
 
 " ember
 Plug 'mustache/vim-mustache-handlebars', { 'for': ['html.handlebars'] }
@@ -328,5 +334,9 @@ nnoremap <C-H> <C-W><C-H>
 " closetag
 let g:closetag_filenames = '*.html,*.hbs'
 let g:closetag_filetypes = 'html,html.handlebars'
+
+" dash.vim
+let g:dash_activate = 0
+nnoremap <Leader>d :Dash<CR>
 
 source $HOME/.config/nvim/deoplete.vim
