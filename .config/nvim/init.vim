@@ -107,6 +107,7 @@ Plug 'mhartington/nvim-typescript', {'for': ['typescript', 'tsx'], 'do': './inst
 
 " python
 Plug 'metakirby5/codi.vim', { 'for': ['python'] }
+Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
 
 " Docker
 Plug 'ekalinin/Dockerfile.vim', { 'for': ['Dockerfile'] }
@@ -338,5 +339,6 @@ let g:closetag_filetypes = 'html,html.handlebars'
 " dash.vim
 let g:dash_activate = 0
 nnoremap <Leader>d :Dash<CR>
+let g:jedi#completions_enabled = 0
 
 source $HOME/.config/nvim/deoplete.vim
