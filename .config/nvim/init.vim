@@ -30,8 +30,7 @@ Plug 'tpope/vim-projectionist'
 " appearance
 Plug 'jacoborus/tender.vim'
 Plug 'morhetz/gruvbox'
-"Plug 'altercation/vim-colors-solarized'
-"Plug 'JulioJu/neovim-qt-colors-solarized-truecolor-only'
+Plug 'arakashic/nvim-colors-solarized'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
@@ -126,27 +125,21 @@ if (has("termguicolors"))
 endif
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-set background=dark
+set background=light
 
-" let g:solarized_nvimqt_italic=0
-" let g:solarized_nvimqt_underline=0
-" let g:solarized_nvimqt_bold=0
-" colorscheme solarized_nvimqt
-
-" alt colors for configured term
 " let g:solarized_termcolors=16
 " let g:solarized_italic=0
 " let g:solarized_bold=0
-" colorscheme solarized
+colorscheme solarized
 
 " colorscheme tender
-colorscheme gruvbox
+" colorscheme gruvbox
 
 " use fancy airline fonts
 let g:airline_powerline_fonts = 1
-" let g:airline_solarized_bg='dark'
+let g:airline_solarized_bg='light'
+let g:airline_theme='solarized'
 " let g:airline_theme='tenderplus'
-let g:airline_theme='gruvbox'
 
 " Show line numbers
 set number
@@ -282,7 +275,7 @@ let g:gitgutter_sign_modified           = '~'
 let g:gitgutter_sign_removed            = '_'
 let g:gitgutter_sign_removed_first_line = '‾'
 let g:gitgutter_sign_modified_removed   = '~_'
-let g:gitgutter_override_sign_column_highlight = 0
+let g:gitgutter_override_sign_column_highlight = 1
 
 " Startify
 let g:startify_fortune_use_unicode = 1
