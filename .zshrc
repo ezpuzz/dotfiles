@@ -169,3 +169,4 @@ codi() {
 }
 
 alias mdv="mdv -t random"
+source <(npx --shell-auto-fallback zsh)
