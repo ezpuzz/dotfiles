@@ -153,6 +153,7 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:$HOME/flutter/bin"
 export PATH="$PATH:$HOME/Library/Haskell/bin"
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$(go env GOPATH)/bin"
 
 # Codi
 # Usage: codi [filetype] [filename]
@@ -170,3 +171,4 @@ codi() {
 
 alias mdv="mdv -t random"
 source <(npx --shell-auto-fallback zsh)
+if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
