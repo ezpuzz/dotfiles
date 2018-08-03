@@ -99,7 +99,7 @@ Plug 'pangloss/vim-javascript', { 'for': ['javascript'] }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'yarn global add tern' }
 
 " react
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mhartington/nvim-typescript', {'for': ['typescript', 'tsx'], 'do': './install.sh' }
 " Plug 'flowtype/vim-flow', { 'for': ['javascript'] }
 " Plug 'mxw/vim-jsx', { 'for': ['javascript'] }
@@ -335,3 +335,6 @@ nnoremap <Leader>d :Dash<CR>
 let g:jedi#completions_enabled = 0
 
 source $HOME/.config/nvim/deoplete.vim
+
+" save all when leaving terminal
+:au FocusLost * silent! wa
