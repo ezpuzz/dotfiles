@@ -7,7 +7,7 @@ HYPHEN_INSENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(git bundler rake ruby gem per-directory-history zsh-syntax-highlighting yarn)
+plugins=(git per-directory-history zsh-syntax-highlighting yarn)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -21,12 +21,13 @@ export LANG=en_US.UTF-8
 #alias ls='ls --color=auto'
 alias lg='git lg'
 alias ag='ag --path-to-ignore ~/.agignore'
-alias rs='rails s'
 alias gpr='hub pull-request'
 alias vim='nvim'
 alias yc='yadm commit -v'
 alias make='make -j8'
 alias lc='colorls -lA --sd'
+alias mdv="mdv -t random"
+alias kd="git difftool --no-symlinks --dir-diff"
 
 #ember aliases
 alias ei='ember install --yarn'
@@ -169,6 +170,5 @@ codi() {
     Codi $syntax" "$@"
 }
 
-alias mdv="mdv -t random"
 source <(npx --shell-auto-fallback zsh)
 if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
