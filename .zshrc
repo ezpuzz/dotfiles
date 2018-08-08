@@ -12,9 +12,9 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="$PATH:$HOME/dotfiles/bin:/usr/lib/go-1.9/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
-
-source $HOME/.rvm/scripts/rvm
+# source $HOME/.rvm/scripts/rvm
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+# export PATH="$PATH:$HOME/.rvm/bin"
 
 export LANG=en_US.UTF-8
 
@@ -102,30 +102,10 @@ fo() {
   fi
 }
 
-
-# the below two functions are useful to set the current JDK. usage: `$ setjdk 1.6`
-function setjdk() {
-  if [ $# -ne 0 ]; then
-    removeFromPath '/System/Library/Frameworks/JavaVM.framework/Home/bin'
-    if [ -n "${JAVA_HOME+x}" ]; then
-      removeFromPath $JAVA_HOME
-    fi
-    export JAVA_HOME=`/usr/libexec/java_home -v $@`
-    export JDK_HOME="/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK"
-    export PATH=$JAVA_HOME/bin:$PATH
-  fi
-}
-function removeFromPath() {
-  export PATH=$(echo $PATH | sed -E -e "s;:$1;;" -e "s;$1:?;;")
-}
-
 ulimit -n 1024
 ulimit -u 2048
 
-export STUDIO_JDK=/Library/Java/JavaVirtualMachines/jdk1.8.0_102.jdk/Contents/Home
-
 # "Windows subsystem for Linux" workarounds
-
 if [[ -f /proc/version && $(</proc/version) == *Microsoft@Microsoft* ]]
 then
   # Set correct umask
@@ -149,10 +129,8 @@ v() {
     done | fzf-tmux -d -m -q "$*" -1) && vim ${files//\~/$HOME}
   }
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$PATH:$HOME/flutter/bin"
-export PATH="$PATH:$HOME/Library/Haskell/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$(go env GOPATH)/bin"
 
