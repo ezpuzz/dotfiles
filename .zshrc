@@ -7,7 +7,7 @@ HYPHEN_INSENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(git per-directory-history zsh-syntax-highlighting yarn)
+plugins=(git yarn colored-man-pages cp docker ember-cli github vi-mode per-directory-history)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration

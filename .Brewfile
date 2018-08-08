@@ -6,7 +6,7 @@ tap "caskroom/fonts"
 tap "crisidev/homebrew-chunkwm"
 tap "koekeishiya/formulae"
 
-brew "git"
+brew "git", args: ["without-completions"]
 brew "hub"
 brew "yadm"
 brew "chunkwm", args: ["HEAD"]
