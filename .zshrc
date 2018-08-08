@@ -1,31 +1,25 @@
+export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
+
 # Path to your oh-my-zsh installation.
-export ZSH=~/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
+
 DISABLE_UPDATE_PROMPT=true
 ZSH_THEME="agnoster"
 
 HYPHEN_INSENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(git yarn colored-man-pages cp docker ember-cli github vi-mode per-directory-history)
+plugins=(git yarn colored-man-pages cp docker ember-cli github per-directory-history)
 source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# source $HOME/.rvm/scripts/rvm
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-# export PATH="$PATH:$HOME/.rvm/bin"
 
 export LANG=en_US.UTF-8
 
-#alias ls='ls --color=auto'
 alias lg='git lg'
 alias ag='ag --path-to-ignore ~/.agignore'
 alias gpr='hub pull-request'
 alias vim='nvim'
 alias yc='yadm commit -v'
 alias make='make -j8'
-alias lc='colorls -lA --sd'
 alias mdv="mdv -t random"
 alias kd="git difftool --no-symlinks --dir-diff"
 
@@ -129,7 +123,6 @@ v() {
     done | fzf-tmux -d -m -q "$*" -1) && vim ${files//\~/$HOME}
   }
 
-export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$PATH:$HOME/flutter/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$(go env GOPATH)/bin"
