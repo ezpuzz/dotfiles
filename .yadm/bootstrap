@@ -21,6 +21,8 @@ if [ "$system_type" = "Darwin" ]; then
     brew bundle --global
   fi
 
+  ln -s /Applications/kitty.app/Contents/Frameworks/kitty/terminfo ~/.terminfo
+
   defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Max (editable)" 80
   defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" 80
   defaults write com.apple.BluetoothAudioAgent "Apple Initial Bitpool (editable)" 80
@@ -37,8 +39,6 @@ pip3 install --user virtualenv
 # gpg --keyserver hkp://pgp.mit.edu --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
 # \curl -sSL https://get.rvm.io | bash
 
-ln -s /Applications/kitty.app/Contents/Frameworks/kitty/terminfo ~/.terminfo
+# curl -L https://git.io/n-install | bash -s -- -y
 
 brew services start skhd
-
-# curl -L https://git.io/n-install | bash -s -- -y

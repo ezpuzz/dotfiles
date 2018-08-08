@@ -4,12 +4,15 @@ export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 export ZSH=$HOME/.oh-my-zsh
 
 DISABLE_UPDATE_PROMPT=true
-ZSH_THEME="agnoster"
+ZSH_THEME=""
 
 HYPHEN_INSENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(git yarn colored-man-pages cp docker ember-cli github per-directory-history)
+DEFAULT_USER="emorypetermann"
+
+plugins=(git yarn colored-man-pages cp docker ember-cli github per-directory-history
+zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 export LANG=en_US.UTF-8
@@ -143,3 +146,6 @@ codi() {
 
 source <(npx --shell-auto-fallback zsh)
 if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
+
+autoload -U promptinit; promptinit
+prompt pure
