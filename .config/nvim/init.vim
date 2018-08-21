@@ -78,7 +78,6 @@ Plug 'elzr/vim-json', { 'for': ['json'] }
 
 " markdown
 Plug 'gabrielelana/vim-markdown', { 'for': ['markdown'] }
-Plug 'shime/vim-livedown', { 'for': ['markdown'] }
 
 " ember
 Plug 'mustache/vim-mustache-handlebars', { 'for': ['html.handlebars'] }
@@ -107,6 +106,13 @@ Plug 'mhartington/nvim-typescript', {'for': ['typescript', 'tsx'], 'do': './inst
 " python
 Plug 'metakirby5/codi.vim', { 'for': ['python'] }
 Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
+
+" flutter
+Plug 'reisub0/hot-reload.vim', { 'for': ['dart'] }
+Plug 'dart-lang/dart-vim-plugin', { 'for': ['dart'] }
+
+" go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': ['go'] }
 
 " Docker
 Plug 'ekalinin/Dockerfile.vim', { 'for': ['Dockerfile'] }
@@ -158,6 +164,9 @@ set nowrap
 set textwidth=100
 set formatoptions+=cqln1j
 set expandtab
+
+" diffs
+set diffopt=filler,vertical,iwhite
 
 " editorconfig will take care of indentation
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
@@ -294,16 +303,22 @@ let test#strategy = 'asyncrun'
 
 " ALE linting
 let g:airline#extensions#ale#enabled = 1
-nmap <silent> [[ <Plug>(ale_previous_wrap)
-nmap <silent> ]] <Plug>(ale_next_wrap)
+
+nmap <silent> <leader>k <Plug>(ale_previous_wrap)
+nmap <silent> <leader>j <Plug>(ale_next_wrap)
+
 let g:ale_fixers = {
 \  'javascript': ['prettier', 'eslint'],
 \  'typescript': ['tslint', 'prettier'],
+\  'go': ['gofmt'],
+\  'markdown': ['prettier']
 \}
 let g:ale_linters = {
-      \'javascript': ['eslint'],
-      \'typescript': ['tslint', 'tsserver', 'typecheck'],
-      \}
+\  'javascript': ['eslint'],
+\  'typescript': ['tslint', 'tsserver', 'typecheck'],
+\  'go': ['gometalinter'],
+\
+\}
 let g:ale_completion_enabled = 0
 let g:ale_fix_on_save = 1
 
@@ -333,6 +348,8 @@ let g:closetag_filetypes = 'html,html.handlebars'
 let g:dash_activate = 0
 nnoremap <Leader>d :Dash<CR>
 let g:jedi#completions_enabled = 0
+
+autocmd FileType markdown :AsyncRun grip -b %
 
 source $HOME/.config/nvim/deoplete.vim
 
