@@ -15,6 +15,10 @@ plugins=(git yarn colored-man-pages cp docker ember-cli github per-directory-his
 zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
+setopt menu_complete
+setopt no_list_beep
+bindkey -M menuselect '^M' .accept-line # execute command when menu selecting
+
 export LANG=en_US.UTF-8
 
 alias lg='git lg'
@@ -129,6 +133,7 @@ v() {
 export PATH="$PATH:$HOME/flutter/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$(go env GOPATH)/bin"
+export PATH="$PATH:$HOME/.pub-cache/bin"
 
 # Codi
 # Usage: codi [filetype] [filename]
