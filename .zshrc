@@ -19,6 +19,8 @@ setopt menu_complete
 setopt no_list_beep
 bindkey -M menuselect '^M' .accept-line # execute command when menu selecting
 
+setopt hist_ignore_all_dups
+
 export LANG=en_US.UTF-8
 
 alias lg='git lg'
