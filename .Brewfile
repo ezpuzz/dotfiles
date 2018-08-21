@@ -22,6 +22,8 @@ brew "gpg"
 brew "htop"
 brew "coreutils"
 brew "fd"
+brew "tree"
+brew "grip"
 
 cask "kitty"
 cask "font-inconsolata-nerd-font"
