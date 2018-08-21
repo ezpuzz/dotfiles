@@ -11,7 +11,7 @@ COMPLETION_WAITING_DOTS="true"
 
 DEFAULT_USER="emorypetermann"
 
-plugins=(git yarn colored-man-pages cp docker ember-cli github per-directory-history
+plugins=(gpg-agent git yarn colored-man-pages cp docker ember-cli github per-directory-history
 zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
