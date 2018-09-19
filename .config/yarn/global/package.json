@@ -1,10 +1,14 @@
 {
   "dependencies": {
+    "alex": "^5.1.0",
     "livedown": "^2.1.1",
+    "markdownlint": "^0.11.0",
+    "markdownlint-cli": "^0.13.0",
     "neovim": "^4.1.0",
     "node-gyp": "^3.7.0",
     "npm": "^6.1.0",
-    "pure-prompt": "^1.7.0",
-    "tern": "^0.21.0"
+    "prettier": "^1.14.2",
+    "tern": "^0.21.0",
+    "write-good": "^0.13.1"
   }
 }
