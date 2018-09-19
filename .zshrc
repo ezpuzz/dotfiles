@@ -61,7 +61,7 @@ _fzf_compgen_dir() {
   fd --type d --hidden --follow --exclude ".git" . "$1"
 }
 export FZF_DEFAULT_COMMAND='fd --type f --color=always'
-export FZF_DEFAULT_OPTS='--ansi'
+export FZF_DEFAULT_OPTS='--ansi --inline-info'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 #export NDK_ROOT=/usr/local/Cellar/android-ndk/r10e
