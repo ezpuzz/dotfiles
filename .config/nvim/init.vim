@@ -76,6 +76,9 @@ Plug 'kchmck/vim-coffee-script', { 'for': ['coffeescript'] }
 Plug 'tfnico/vim-gradle', { 'for': ['groovy'] }
 Plug 'elzr/vim-json', { 'for': ['json'] }
 
+"nginx
+Plug 'chr4/nginx.vim'
+
 " markdown
 Plug 'gabrielelana/vim-markdown', { 'for': ['markdown'] }
 
@@ -295,7 +298,6 @@ endfunction
 
 " AsyncRun
 command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
-autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
 let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
 
 " vim-test
@@ -350,6 +352,8 @@ nnoremap <Leader>d :Dash<CR>
 let g:jedi#completions_enabled = 0
 
 autocmd FileType markdown :AsyncRun grip -b %
+
+autocmd FileType make setlocal noexpandtab
 
 source $HOME/.config/nvim/deoplete.vim
 

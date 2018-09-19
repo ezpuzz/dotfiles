@@ -20,12 +20,6 @@ call deoplete#custom#option({
 call deoplete#custom#var('buffer', 'require_same_filetype', v:false)
 call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
 
-" close preview window after completion
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-
-" completion on tab
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
 " UltiSnips
 let g:UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
 "let g:UltiSnipsJumpForwardTrigger = "<c-j>"
