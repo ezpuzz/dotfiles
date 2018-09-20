@@ -19,7 +19,14 @@ setopt menu_complete
 setopt no_list_beep
 bindkey -M menuselect '^M' .accept-line # execute command when menu selecting
 
+setopt magicequalsubst
+
 setopt hist_ignore_all_dups
+
+zstyle ':completion:*' matcher-list '' \
+  'm:{a-z\-}={A-Z\_}' \
+  'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
+  'r:|?=** m:{a-z\-}={A-Z\_}'
 
 export LANG=en_US.UTF-8
 
