@@ -5,6 +5,7 @@ tap "caskroom/cask"
 tap "caskroom/fonts"
 tap "crisidev/homebrew-chunkwm"
 tap "koekeishiya/formulae"
+tap "chrokh/tap"
 
 brew "git", args: ["without-completions"]
 brew "hub"
@@ -24,6 +25,7 @@ brew "coreutils"
 brew "fd"
 brew "tree"
 brew "grip"
+brew "base16-manager"
 
 cask "kitty"
 cask "font-inconsolata-nerd-font"
