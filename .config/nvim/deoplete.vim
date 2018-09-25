@@ -16,6 +16,16 @@ call deoplete#custom#option({
       \  }
       \})
 
+inoremap <silent><expr> <Tab>
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
 " use words from all buffers
 call deoplete#custom#var('buffer', 'require_same_filetype', v:false)
 call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])

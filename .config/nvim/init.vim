@@ -12,7 +12,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'tpope/vim-sensible'
 
 " terminal
-Plug 'kassio/neoterm'
+" Plug 'kassio/neoterm'
 
 " run tests within vim
 Plug 'skywind3000/asyncrun.vim'
@@ -71,16 +71,19 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-rhubarb' " issue numbers and mentions in git commit messages
 
-" file types
-Plug 'kchmck/vim-coffee-script', { 'for': ['coffeescript'] }
-Plug 'tfnico/vim-gradle', { 'for': ['groovy'] }
-Plug 'elzr/vim-json', { 'for': ['json'] }
+" syntax
+"
+Plug 'bfontaine/Brewfile.vim'
 
-"nginx
+Plug 'kchmck/vim-coffee-script'
+
+Plug 'elzr/vim-json'
+
+Plug 'tfnico/vim-gradle'
+
 Plug 'chr4/nginx.vim'
 
-" markdown
-Plug 'gabrielelana/vim-markdown', { 'for': ['markdown'] }
+Plug 'gabrielelana/vim-markdown'
 
 " ember
 Plug 'mustache/vim-mustache-handlebars', { 'for': ['html.handlebars'] }
@@ -234,23 +237,11 @@ nnoremap <silent> <f10> :TREPLSendFile<cr>
 nnoremap <silent> <f9> :TREPLSendLine<cr>
 vnoremap <silent> <f9> :TREPLSendSelection<cr>
 
-nmap gx <Plug>(neoterm-repl-send)
-xmap gx <Plug>(neoterm-repl-send)
-nmap gxx <Plug>(neoterm-repl-send-line)
-
 " run set test lib
 nnoremap <silent> ,rt :wa<cr>:TestNearest<cr>
 nnoremap <silent> ,rf :wa<cr>:TestFile<cr>
 nnoremap <silent> ,rn :wa<cr>:TestNearest<cr>
 nnoremap <silent> ,rr :wa<cr>:TestLast<cr>
-
-" Useful maps
-" hide/close terminal
-nnoremap <silent> ,th :call neoterm#close()<cr>
-" clear terminal
-nnoremap <silent> ,tl :call neoterm#clear()<cr>
-" kills the current job (send a <c-c>)
-nnoremap <silent> ,tc :call neoterm#kill()<cr>
 
 " nvim terminal mode
 :tnoremap <Esc> <C-\><C-n>
