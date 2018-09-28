@@ -11,7 +11,7 @@ COMPLETION_WAITING_DOTS="true"
 
 DEFAULT_USER="emorypetermann"
 
-plugins=(gpg-agent git yarn colored-man-pages cp docker ember-cli github per-directory-history
+plugins=(gpg-agent git yarn colored-man-pages cp docker docker-compose docker-machine kubectl ember-cli github per-directory-history
 zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
@@ -171,7 +171,6 @@ BASE16_SHELL="$HOME/.base16-manager/chriskempson/base16-shell/"
   eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 source <(npx --shell-auto-fallback zsh)
-if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
 
 autoload -U promptinit; promptinit
 prompt pure
