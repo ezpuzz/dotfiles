@@ -11,13 +11,14 @@ COMPLETION_WAITING_DOTS="true"
 
 DEFAULT_USER="emorypetermann"
 
-plugins=(gpg-agent git yarn colored-man-pages cp docker docker-compose docker-machine kubectl ember-cli github per-directory-history
-zsh-syntax-highlighting)
+plugins=(gpg-agent git yarn colored-man-pages cp docker docker-compose docker-machine kubectl ember-cli github per-directory-history zsh-syntax-highlighting rbenv)
 source $ZSH/oh-my-zsh.sh
 
 setopt menu_complete
 setopt no_list_beep
 bindkey -M menuselect '^M' .accept-line # execute command when menu selecting
+
+zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
 setopt magicequalsubst
 
@@ -171,6 +172,20 @@ BASE16_SHELL="$HOME/.base16-manager/chriskempson/base16-shell/"
   eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 source <(npx --shell-auto-fallback zsh)
+
+#function zle-line-init zle-keymap-select {
+  #PROMPT=`~/repos/purs/target/release/purs prompt -k "$KEYMAP" -r "$?"`
+  #zle reset-prompt
+#}
+#zle -N zle-line-init
+#zle -N zle-keymap-select
+
+#autoload -Uz add-zsh-hook
+
+#function _prompt_purs_precmd() {
+  #~/repos/purs/target/release/purs precmd --git-detailed
+#}
+#add-zsh-hook precmd _prompt_purs_precmd
 
 autoload -U promptinit; promptinit
 prompt pure
