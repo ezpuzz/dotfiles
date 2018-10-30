@@ -3,24 +3,23 @@
 	name = Emory Petermann
 [core]
 	editor = vim -u ~/.config/nvim/git.vim
-	pager = diff-so-fancy | less --tabs=4 -R
-	autocrlf = input
+	pager = diff-so-fancy | less --tabs=4 -RFX
+	autocrlf = false
+[commit]
+  template = ~/.gitmessage
+	cleanup = strip
 [push]
 	default = current
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lgd = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit develop..
 [pull]
 	rebase = true
-[color "diff"]
-	whitespace = red reverse
-[color]
-	diff = auto
-	ui = auto
 [rerere]
 	enabled = true
 [diff-so-fancy]
 	markEmptyLines = false
-
+	stripLeadingSymbols = false
 [diff]
   tool = kitty
   guitool = kitty.gui
@@ -32,10 +31,15 @@
 [difftool "kitty.gui"]
   cmd = kitty kitty +kitten diff $LOCAL $REMOTE
 [status]
-	submoduleSummary = true
-[url "git@github.com:"]
-	insteadOf = https://github.com/
+  submoduleSummary = true
 [rebase]
-	autostash = true
+  autostash = true
 [fetch]
-	recurseSubmodules = true
+  recurseSubmodules = true
+[winUpdater]
+	recentlySeenVersion = 2.19.1.windows.1
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
