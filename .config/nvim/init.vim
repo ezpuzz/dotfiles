@@ -47,20 +47,22 @@ Plug 'rizzatti/dash.vim'
 " Linting
 Plug 'w0rp/ale'
 
-" completion
-Plug 'autozimu/LanguageClient-neovim', {
-      \ 'branch': 'next',
-      \ 'do': 'bash install.sh',
-      \ }
-Plug 'ezpuzz/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/neco-syntax'
-Plug 'Shougo/neco-vim'
-Plug 'ezpuzz/deoplete-emoji', { 'branch': 'submodule-emojis' }
-Plug 'zchee/deoplete-jedi'
+if has('nvim')
+  " completion
+  Plug 'autozimu/LanguageClient-neovim', {
+        \ 'branch': 'next',
+        \ 'do': 'bash install.sh',
+        \ }
+  Plug 'ezpuzz/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'Shougo/neco-syntax'
+  Plug 'Shougo/neco-vim'
+  Plug 'ezpuzz/deoplete-emoji', { 'branch': 'submodule-emojis' }
+  Plug 'zchee/deoplete-jedi'
 
-" TODO: use these with deoplete more
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+  " TODO: use these with deoplete more
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
+endif
 
 " file searching
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -346,7 +348,9 @@ autocmd FileType markdown :AsyncRun grip -b %
 
 autocmd FileType make setlocal noexpandtab
 
-source $HOME/.config/nvim/deoplete.vim
+if has('nvim')
+  source $HOME/.config/nvim/deoplete.vim
+endif
 
 " save all when leaving terminal
 :au FocusLost * silent! wa

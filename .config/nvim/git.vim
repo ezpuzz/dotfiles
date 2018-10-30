@@ -5,9 +5,11 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'editorconfig/editorconfig-vim'
   Plug 'wakatime/vim-wakatime'
 
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'Shougo/neco-syntax'
-  Plug 'fszymanski/deoplete-emoji'
+  if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/neco-syntax'
+    Plug 'fszymanski/deoplete-emoji'
+  endif
 
   " source control
   Plug 'tpope/vim-fugitive'
@@ -18,4 +20,6 @@ call plug#end()
 set background=dark
 colorscheme tender
 
-source $HOME/.config/nvim/deoplete.vim
+if has('nvim')
+  source $HOME/.config/nvim/deoplete.vim
+endif
