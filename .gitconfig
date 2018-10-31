@@ -43,3 +43,5 @@
 	required = true
 [difftool "vimdiff"]
 	cmd = vimdiff -u NONE $LOCAL $REMOTE
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
