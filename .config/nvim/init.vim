@@ -135,9 +135,9 @@ Plug 'tapayne88/vim-mochajs'
 Plug 'leafgarland/typescript-vim'
 
 if has('win32')
-  Plug 'mhartington/nvim-typescript'
+  Plug 'mhartington/nvim-typescript', { 'for': ['typescript'] }
 else
-  Plug 'mhartington/nvim-typescript', {'do': './install.sh' }
+  Plug 'mhartington/nvim-typescript', {'do': './install.sh', 'for': ['typescript'] }
 endif
 
 " for future use if needed
