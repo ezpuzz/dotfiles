@@ -2,7 +2,7 @@
 	email = epetermann@neighborly.com
 	name = Emory Petermann
 [core]
-	editor = vim -u ~/.config/nvim/git.vim
+	editor = nvim -u ~/.config/nvim/git.vim
 	pager = diff-so-fancy | less --tabs=4 -RFX
 	autocrlf = false
 [commit]
@@ -21,7 +21,7 @@
 	markEmptyLines = false
 	stripLeadingSymbols = false
 [diff]
-  tool = kitty
+  tool = vimdiff
   guitool = kitty.gui
 [difftool]
   prompt=false
@@ -41,3 +41,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[difftool "vimdiff"]
+	cmd = vimdiff -u NONE $LOCAL $REMOTE
