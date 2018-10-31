@@ -26,6 +26,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'wellle/targets.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-projectionist'
+Plug 'jiangmiao/auto-pairs'
 
 " appearance
 Plug 'jacoborus/tender.vim'
@@ -77,6 +78,8 @@ if has('nvim')
   Plug 'honza/vim-snippets'
 endif
 
+Plug 'Shougo/neopairs.vim' " automatic closing parens on complete
+
 " file searching
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -86,6 +89,7 @@ Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-rhubarb' " issue numbers and mentions in git commit messages
+Plug 'rhysd/committia.vim'
 
 " syntax
 "
@@ -126,15 +130,19 @@ Plug 'pangloss/vim-javascript', { 'for': ['javascript'] }
 Plug 'tapayne88/vim-mochajs'
 
 
-" react
-Plug 'HerringtonDarkholme/yats.vim'
+" both of these are typescript syntax but don't know which is bettter
+"Plug 'HerringtonDarkholme/yats.vim'
+Plug 'leafgarland/typescript-vim'
+
 if has('win32')
   Plug 'mhartington/nvim-typescript'
 else
   Plug 'mhartington/nvim-typescript', {'do': './install.sh' }
 endif
-" Plug 'flowtype/vim-flow', { 'for': ['javascript'] }
-" Plug 'mxw/vim-jsx', { 'for': ['javascript'] }
+
+" for future use if needed
+"Plug 'flowtype/vim-flow'
+"Plug 'mxw/vim-jsx'
 
 " python
 Plug 'metakirby5/codi.vim', { 'for': ['python'] }
@@ -152,6 +160,9 @@ Plug 'ekalinin/Dockerfile.vim', { 'for': ['Dockerfile'] }
 
 " powershell
 Plug 'PProvost/vim-ps1'
+
+" Jenkins
+Plug 'martinda/Jenkinsfile-vim-syntax'
 
 " time tracking
 Plug 'wakatime/vim-wakatime'
@@ -341,6 +352,7 @@ if !has('win32')
 endif
 
 " AsyncRun
+command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
 autocmd FileType markdown :AsyncRun grip -b %
 augroup vimrc
@@ -368,11 +380,17 @@ let g:test#preserve_screen = 1
 " ALE linting
 let g:airline#extensions#ale#enabled = 1
 
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+
 nmap <silent> <leader>k <Plug>(ale_previous_wrap)
 nmap <silent> <leader>j <Plug>(ale_next_wrap)
 
 let g:ale_fixers = {
 \  'javascript': ['prettier', 'eslint'],
+\  'json': ['prettier'],
 \  'typescript': ['tslint', 'prettier'],
 \  'go': ['gofmt'],
 \  'markdown': ['prettier'],
@@ -380,12 +398,13 @@ let g:ale_fixers = {
 \}
 let g:ale_linters = {
 \  'javascript': ['eslint'],
-\  'typescript': ['tslint', 'tsserver'],
-\  'go': ['gometalinter']
-\
+\  'typescript': ['eslint', 'tslint', 'tsserver'],
+\  'go': ['gometalinter'],
+\  'html': ['alex', 'htmlhint', 'proselint', 'tidy', 'ember-template-lint']
 \}
 let g:ale_completion_enabled = 0
 let g:ale_fix_on_save = 1
+let g:ale_history_enabled = 1
 
 " mustache
 let g:mustache_abbreviations = 1
@@ -417,7 +436,7 @@ if has('nvim')
   source $HOME/.config/nvim/deoplete.vim
 endif
 
-source $HOME/.config/nvim/python.vim
+"source $HOME/.config/nvim/python.vim
 
 " save all when leaving terminal
 au FocusLost * silent! wa

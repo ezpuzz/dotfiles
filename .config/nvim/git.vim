@@ -22,14 +22,16 @@ call plug#end()
 if (has("termguicolors"))
   set termguicolors
 endif
+
 set background=dark
 colorscheme tender
 
+set cursorline
 set textwidth=72
 set nofoldenable
 
 if has('nvim')
-  source $HOME/.config/nvim/python.vim
+  "source $HOME/.config/nvim/python.vim
   "source $HOME/.config/nvim/deoplete.vim
   set completeopt+=noinsert
   let g:deoplete#enable_at_startup = 1
@@ -56,5 +58,3 @@ filetype on
 
 syntax on
 syntax sync fromstart
-
-
