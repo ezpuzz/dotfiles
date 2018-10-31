@@ -11,7 +11,6 @@
     "lolcatjs": "^2.3.2",
     "markdownlint": "^0.11.0",
     "markdownlint-cli": "^0.13.0",
-    "n": "^2.1.12",
     "neovim": "^4.1.0",
     "node-gyp": "^3.7.0",
     "npm": "^6.1.0",

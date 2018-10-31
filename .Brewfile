@@ -29,3 +29,5 @@ brew "base16-manager"
 
 cask "kitty"
 cask "font-inconsolata-nerd-font"
+
+brew "yarn", args: ["without-node"]
