@@ -65,7 +65,7 @@ if has('nvim')
 	 \ }
   endif
 
-  Plug 'ezpuzz/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'Shougo/neco-syntax'
   Plug 'Shougo/neco-vim'
   Plug 'ezpuzz/deoplete-emoji', { 'branch': 'submodule-emojis' }
