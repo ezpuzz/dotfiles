@@ -12,7 +12,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'tpope/vim-sensible'
 
 " terminal
-" Plug 'kassio/neoterm'
+Plug 'kassio/neoterm'
 
 " run tests within vim
 Plug 'skywind3000/asyncrun.vim'
@@ -43,6 +43,10 @@ Plug 'scrooloose/nerdcommenter'
 
 " Docs
 Plug 'rizzatti/dash.vim'
+Plug 'Shougo/echodoc.vim'
+
+" project mgmt
+Plug 'jceb/vim-orgmode'
 
 " Linting
 Plug 'w0rp/ale'
@@ -66,6 +70,7 @@ if has('nvim')
   Plug 'Shougo/neco-vim'
   Plug 'ezpuzz/deoplete-emoji', { 'branch': 'submodule-emojis' }
   Plug 'zchee/deoplete-jedi'
+  Plug 'carlitux/deoplete-ternjs', { 'do': 'yarn global add tern' }
 
   " TODO: use these with deoplete more
   Plug 'SirVer/ultisnips'
@@ -74,6 +79,7 @@ endif
 
 " file searching
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 
 " source control
@@ -89,7 +95,12 @@ Plug 'kchmck/vim-coffee-script'
 
 Plug 'elzr/vim-json'
 
+Plug 'kchmck/vim-coffee-script', { 'for': ['coffeescript'] }
+Plug 'elzr/vim-json', { 'for': ['json'] }
+
 Plug 'tfnico/vim-gradle'
+Plug 'stephpy/vim-yaml'
+Plug 'Einenlum/yaml-revealer'
 
 Plug 'chr4/nginx.vim'
 
@@ -111,7 +122,9 @@ Plug 'vim-ruby/vim-ruby', { 'for': ['ruby'] }
 
 " js
 Plug 'pangloss/vim-javascript', { 'for': ['javascript'] }
-Plug 'carlitux/deoplete-ternjs', { 'do': 'yarn global add tern' }
+
+Plug 'tapayne88/vim-mochajs'
+
 
 " react
 Plug 'HerringtonDarkholme/yats.vim'
@@ -136,6 +149,9 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': ['go'] }
 
 " Docker
 Plug 'ekalinin/Dockerfile.vim', { 'for': ['Dockerfile'] }
+
+" powershell
+Plug 'PProvost/vim-ps1'
 
 " time tracking
 Plug 'wakatime/vim-wakatime'
@@ -209,8 +225,8 @@ set scrolloff=3
 set matchpairs+=<:> " use % to jump between pairs
 
 " Move up/down editor lines
-nnoremap j gj
-nnoremap k gk
+noremap  <buffer> <silent> k gk
+noremap  <buffer> <silent> j gj
 
 " Allow hidden buffers
 set hidden
@@ -265,11 +281,18 @@ nnoremap <silent> <f10> :TREPLSendFile<cr>
 nnoremap <silent> <f9> :TREPLSendLine<cr>
 vnoremap <silent> <f9> :TREPLSendSelection<cr>
 
-" run set test lib
-nnoremap <silent> ,rt :wa<cr>:TestNearest<cr>
-nnoremap <silent> ,rf :wa<cr>:TestFile<cr>
-nnoremap <silent> ,rn :wa<cr>:TestNearest<cr>
-nnoremap <silent> ,rr :wa<cr>:TestLast<cr>
+nmap gx <Plug>(neoterm-repl-send)
+xmap gx <Plug>(neoterm-repl-send)
+nmap gxx <Plug>(neoterm-repl-send-line)
+
+
+" Useful maps
+" hide/close terminal
+nnoremap <silent> ,th :call neoterm#close()<cr>
+" clear terminal
+nnoremap <silent> ,tl :call neoterm#clear()<cr>
+" kills the current job (send a <c-c>)
+nnoremap <silent> ,tc :call neoterm#kill()<cr>
 
 " nvim terminal mode
 :tnoremap <Esc> <C-\><C-n>
@@ -318,11 +341,29 @@ if !has('win32')
 endif
 
 " AsyncRun
-command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
+autocmd FileType markdown :AsyncRun grip -b %
+augroup vimrc
+    autocmd QuickFixCmdPost * call asyncrun#quickfix_toggle(8, 1)
+augroup END
+augroup quickfix
+    autocmd!
+    autocmd FileType qf setlocal wrap
+augroup END
 
 " vim-test
-let test#strategy = 'asyncrun'
+nnoremap <silent> ,rt :wa<cr>:TestNearest<cr>
+nnoremap <silent> ,rf :wa<cr>:TestFile<cr>
+nnoremap <silent> ,rn :wa<cr>:TestNearest<cr>
+nnoremap <silent> ,rr :wa<cr>:TestLast<cr>
+function! AsyncRunNoScrollStrategy(cmd)
+  execute 'AsyncRun! '.a:cmd
+endfunction
+let g:test#custom_strategies = {'asyncnoscroll': function('AsyncRunNoScrollStrategy')}
+let g:test#strategy = 'asyncnoscroll'
+let g:test#runner_commands = ['Mocha']
+let g:test#enabled_runners = ["javascript#mocha"]
+let g:test#preserve_screen = 1
 
 " ALE linting
 let g:airline#extensions#ale#enabled = 1
@@ -334,20 +375,17 @@ let g:ale_fixers = {
 \  'javascript': ['prettier', 'eslint'],
 \  'typescript': ['tslint', 'prettier'],
 \  'go': ['gofmt'],
-\  'markdown': ['prettier']
+\  'markdown': ['prettier'],
+\  'yaml': ['prettier']
 \}
 let g:ale_linters = {
 \  'javascript': ['eslint'],
-\  'typescript': ['tslint', 'tsserver', 'typecheck'],
-\  'go': ['gometalinter'],
+\  'typescript': ['tslint', 'tsserver'],
+\  'go': ['gometalinter']
 \
 \}
 let g:ale_completion_enabled = 0
 let g:ale_fix_on_save = 1
-
-" set system python to ignore virtualenv
-let g:python_host_prog = "/usr/local/bin/python"
-let g:python3_host_prog = "/usr/local/bin/python3"
 
 " mustache
 let g:mustache_abbreviations = 1
@@ -372,7 +410,6 @@ let g:dash_activate = 0
 nnoremap <Leader>d :Dash<CR>
 let g:jedi#completions_enabled = 0
 
-autocmd FileType markdown :AsyncRun grip -b %
 
 autocmd FileType make setlocal noexpandtab
 
