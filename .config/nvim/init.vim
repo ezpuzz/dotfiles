@@ -49,10 +49,18 @@ Plug 'w0rp/ale'
 
 if has('nvim')
   " completion
-  Plug 'autozimu/LanguageClient-neovim', {
-        \ 'branch': 'next',
-        \ 'do': 'bash install.sh',
-        \ }
+  if has('win32') || has('win64')
+    Plug 'autozimu/LanguageClient-neovim', {
+	 \ 'branch': 'next',
+	 \ 'do': 'powershell -executionpolicy bypass -File install.ps1',
+	 \ }
+  else
+    Plug 'autozimu/LanguageClient-neovim', {
+	 \ 'branch': 'next',
+	 \ 'do': 'bash install.sh',
+	 \ }
+  endif
+
   Plug 'ezpuzz/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'Shougo/neco-syntax'
   Plug 'Shougo/neco-vim'
@@ -107,7 +115,11 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'yarn global add tern' }
 
 " react
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript', {'for': ['typescript', 'tsx'], 'do': './install.sh' }
+if has('win32')
+  Plug 'mhartington/nvim-typescript'
+else
+  Plug 'mhartington/nvim-typescript', {'do': './install.sh' }
+endif
 " Plug 'flowtype/vim-flow', { 'for': ['javascript'] }
 " Plug 'mxw/vim-jsx', { 'for': ['javascript'] }
 
@@ -129,7 +141,9 @@ Plug 'ekalinin/Dockerfile.vim', { 'for': ['Dockerfile'] }
 Plug 'wakatime/vim-wakatime'
 
 " IMPORTANT: load fonts last
-Plug 'ryanoasis/vim-devicons'
+if !has('win32')
+  Plug 'ryanoasis/vim-devicons'
+endif
 
 call plug#end()
 
@@ -137,14 +151,25 @@ call plug#end()
 if (has("termguicolors"))
   set termguicolors
 endif
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-
-set background=light
 
 " let g:solarized_termcolors=16
 " let g:solarized_italic=0
 " let g:solarized_bold=0
-colorscheme solarized
+if has('win32') || has('win32unix')
+        " use default terminal background color
+        if !has("gui_running")
+          set t_Co=256
+          let &t_AB="\e[48;5;%dm"
+          let &t_AF="\e[38;5;%dm"
+          "hi Normal ctermbg=NONE guibg=NONE
+        endif
+
+        set background=dark
+        colorscheme gruvbox
+else
+        set background=light
+        colorscheme solarized
+endif
 
 " colorscheme tender
 " colorscheme gruvbox
@@ -285,9 +310,11 @@ let g:gitgutter_override_sign_column_highlight = 1
 " Startify
 let g:startify_fortune_use_unicode = 1
 let g:startify_change_to_vcs_root = 1
-function! StartifyEntryFormat()
-  return 'WebDevIconsGetFileTypeSymbol(absolute_path) ."  ". entry_path'
-endfunction
+if !has('win32')
+  function! StartifyEntryFormat()
+    return 'WebDevIconsGetFileTypeSymbol(absolute_path) ."  ". entry_path'
+  endfunction
+endif
 
 " AsyncRun
 command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
