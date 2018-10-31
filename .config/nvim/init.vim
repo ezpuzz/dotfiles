@@ -171,8 +171,8 @@ else
         colorscheme solarized
 endif
 
-" colorscheme tender
-" colorscheme gruvbox
+" reduce flicker
+set noshowcmd
 
 " use fancy airline fonts
 let g:airline_powerline_fonts = 1
@@ -189,8 +189,8 @@ set visualbell
 " highlight current line
 set cursorline
 
-" Security
-set modelines=0
+" already have airline don't need double
+set noshowmode
 
 " Whitespace
 set nowrap
@@ -256,6 +256,7 @@ set foldlevel=3
 autocmd FileType ruby compiler ruby
 
 set wildmode=longest,list,full
+set wildmenu
 
 let g:ackprg = "rg --vimgrep"
 
@@ -379,5 +380,9 @@ if has('nvim')
   source $HOME/.config/nvim/deoplete.vim
 endif
 
+source $HOME/.config/nvim/python.vim
+
 " save all when leaving terminal
-:au FocusLost * silent! wa
+au FocusLost * silent! wa
+
+autocmd BufEnter * :syntax sync fromstart
