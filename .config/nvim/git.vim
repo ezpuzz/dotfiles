@@ -1,6 +1,14 @@
 set nocp
 filetype off
 
+" mintty cursor shapes
+if has('win32unix')
+  let &t_ti.="\e[1 q"
+  let &t_SI.="\e[5 q"
+  let &t_EI.="\e[1 q"
+  let &t_te.="\e[0 q"
+endif
+
 call plug#begin('~/.config/nvim/plugged')
   Plug 'jacoborus/tender.vim'
 
@@ -31,7 +39,7 @@ set textwidth=72
 set nofoldenable
 
 if has('nvim')
-  "source $HOME/.config/nvim/python.vim
+  source $HOME/.config/nvim/python.vim
   "source $HOME/.config/nvim/deoplete.vim
   set completeopt+=noinsert
   let g:deoplete#enable_at_startup = 1
