@@ -46,6 +46,9 @@ alias kd="git difftool --no-symlinks --dir-diff"
 #ember aliases
 alias ei='ember install --yarn'
 
+#ripgrep
+export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 system_type=$(uname -s)
