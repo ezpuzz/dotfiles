@@ -7,6 +7,7 @@ tap "crisidev/homebrew-chunkwm"
 tap "koekeishiya/formulae"
 tap "chrokh/tap"
 
+brew "less"
 brew "git", args: ["without-completions"]
 brew "hub"
 brew "yadm"
@@ -31,3 +32,6 @@ cask "kitty"
 cask "font-inconsolata-nerd-font"
 
 brew "yarn", args: ["without-node"]
+
+brew "pre-commit"
+brew "kubernetes-helm"
