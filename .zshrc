@@ -1,6 +1,3 @@
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
-
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -138,35 +135,42 @@ then
 fi
 
 # v - open files in ~/.viminfo
-v() {
-  local files
-  files=$(grep '^>' ~/.viminfo | cut -c3- |
-    while read line; do
-      [ -f "${line/\~/$HOME}" ] && echo "$line"
-    done | fzf-tmux -d -m -q "$*" -1) && vim ${files//\~/$HOME}
-  }
+#v() {
+#  local files
+#  files=$(grep '^>' ~/.viminfo | cut -c3- |
+#    while read line; do
+#      [ -f "${line/\~/$HOME}" ] && echo "$line"
+#    done | fzf-tmux -d -m -q "$*" -1) && vim ${files//\~/$HOME}
+#  }
 
-export PATH="$PATH:$HOME/flutter/bin"
-export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:$(go env GOPATH)/bin"
-export PATH="$PATH:$HOME/.pub-cache/bin"
+
+pathadd() {
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="${PATH:+"$PATH:"}$1"
+    fi
+}
+
+pathadd $HOME/.local/bin
+pathadd $(go env GOPATH)/bin
+#pathadd $HOME/flutter/bin
+#pathadd $HOME/.pub-cache/bin
 
 # Codi
 # Usage: codi [filetype] [filename]
-codi() {
-  local syntax="${1:-python}"
-  shift
-  vim -c \
-    "let g:startify_disable_at_vimenter = 1 |\
-    set bt=nofile ls=0 noru nonu nornu |\
-    hi ColorColumn ctermbg=NONE |\
-    hi VertSplit ctermbg=NONE |\
-    hi NonText ctermfg=0 |\
-    Codi $syntax" "$@"
-}
+#codi() {
+#  local syntax="${1:-python}"
+#  shift
+#  vim -c \
+#    "let g:startify_disable_at_vimenter = 1 |\
+#    set bt=nofile ls=0 noru nonu nornu |\
+#    hi ColorColumn ctermbg=NONE |\
+#    hi VertSplit ctermbg=NONE |\
+#    hi NonText ctermfg=0 |\
+#    Codi $syntax" "$@"
+#}
 
 # Docker stuff
-DOCKER_HIDE_LEGACY_COMMANDS=true
+export DOCKER_HIDE_LEGACY_COMMANDS=true
 
 # base16 color stuff
 # Base16 Shell
