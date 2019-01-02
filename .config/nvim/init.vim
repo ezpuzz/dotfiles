@@ -161,7 +161,7 @@ Plug 'reisub0/hot-reload.vim', { 'for': ['dart'] }
 Plug 'dart-lang/dart-vim-plugin', { 'for': ['dart'] }
 
 " go
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': ['go'] }
+Plug 'fatih/vim-go', { 'for': ['go'] }
 
 " Docker
 Plug 'ekalinin/Dockerfile.vim', { 'for': ['Dockerfile'] }
@@ -259,6 +259,7 @@ set hlsearch
 set ignorecase
 set smartcase
 set showmatch
+vnoremap // y/<C-R>"<CR>
 
 " use mousewheel in vim
 set mouse=a
@@ -361,7 +362,7 @@ endif
 " AsyncRun
 command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
-autocmd FileType markdown :AsyncRun grip -b %
+"autocmd FileType markdown :AsyncRun grip -b %
 augroup vimrc
     autocmd QuickFixCmdPost * call asyncrun#quickfix_toggle(8, 1)
 augroup END
@@ -407,7 +408,7 @@ let g:ale_linters = {
 \  'javascript': ['eslint'],
 \  'typescript': ['eslint', 'tslint', 'tsserver'],
 \  'go': ['gometalinter'],
-\  'html': ['alex', 'htmlhint', 'proselint', 'tidy', 'ember-template-lint']
+\  'html': ['alex', 'htmlhint', 'tidy', 'ember-template-lint']
 \}
 let g:ale_completion_enabled = 0
 let g:ale_fix_on_save = 1
@@ -438,6 +439,10 @@ let g:jedi#completions_enabled = 0
 
 
 autocmd FileType make setlocal noexpandtab
+
+if has('mac')
+  set clipboard=unnamedplus
+endif
 
 if has('nvim')
   source $HOME/.config/nvim/deoplete.vim

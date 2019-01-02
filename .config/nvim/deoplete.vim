@@ -39,7 +39,7 @@ endfunction
 " one process per completion source
 call deoplete#custom#option({
       \  'num_processes': 0,
-      \  'auto_complete_delay': 0,
+      \  'auto_complete_delay': 20,
       \  'omni_patterns': {
       \    'gitcommit': ['\#.*', '@.*']
       \  },
