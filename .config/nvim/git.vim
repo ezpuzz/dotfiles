@@ -65,4 +65,4 @@ filetype plugin indent on
 filetype on
 
 syntax on
-syntax sync fromstart
+autocmd BufEnter * :syntax sync fromstart
