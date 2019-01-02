@@ -2,14 +2,12 @@
 	email = epetermann@neighborly.com
 	name = Emory Petermann
 [core]
-	editor = vim -u ~/.config/nvim/git.vim
-	pager = emojify | diff-so-fancy | less --tabs=4 -RFX
+	editor = nvim -u ~/.config/nvim/git.vim
+	pager = emojify | diff-so-fancy | less --tabs=4 -RF
 	autocrlf = false
 [commit]
   ;template = ~/.gitmessage
 	cleanup = strip
-[push]
-	default = current
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	lgd = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit develop..
@@ -45,3 +43,8 @@
 	cmd = vimdiff -u NONE $LOCAL $REMOTE
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
+[branch]
+	autosetuprebase = always
+	autosetupmerge = always
+[push]
+	default = current
