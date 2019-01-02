@@ -8,6 +8,7 @@ tap "koekeishiya/formulae"
 tap "chrokh/tap"
 
 brew "less"
+brew "zsh", args: ["HEAD"]
 brew "git", args: ["without-completions"]
 brew "hub"
 brew "yadm"
