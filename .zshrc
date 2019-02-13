@@ -9,7 +9,7 @@ COMPLETION_WAITING_DOTS="true"
 
 DEFAULT_USER="emorypetermann"
 
-plugins=(gpg-agent git yarn colored-man-pages cp docker docker-compose docker-machine kubectl ember-cli github per-directory-history zsh-syntax-highlighting rbenv)
+plugins=(gpg-agent gitfast yarn colored-man-pages cp docker docker-compose docker-machine kubectl ember-cli github per-directory-history rbenv git-auto-fetch fast-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 setopt menu_complete
