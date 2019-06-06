@@ -1,22 +1,20 @@
 {
   "dependencies": {
-    "alex": "^5.1.0",
+    "alex": "^7.1.0",
     "bower": "^1.8.4",
     "chalk-cli": "^4.0.0",
-    "eslint-watch": "^4.0.2",
+    "eslint-watch": "^5.1.2",
     "figlet-cli": "^0.1.0",
+    "github-release-notes": "^0.17.0",
     "image-to-ascii-cli": "^1.0.9",
     "jsonlint": "^1.6.3",
     "livedown": "^2.1.1",
     "lolcatjs": "^2.3.2",
-    "markdownlint": "^0.11.0",
-    "markdownlint-cli": "^0.13.0",
-    "neovim": "^4.2.1",
-    "node-gyp": "^3.7.0",
-    "npm": "^6.1.0",
-    "prettier": "^1.14.3",
+    "neovim": "^4.5.0",
+    "node-gyp": "^4.0.0",
+    "npm": "^6.9.0",
+    "prettier": "^1.17.0",
     "tern": "^0.23.0",
-    "typescript": "^3.1.1",
-    "write-good": "^0.13.1"
+    "write-good": "^1.0.1"
   }
 }

@@ -45,14 +45,16 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
 Plug 'chrisbra/Colorizer'
 
+Plug 'luochen1990/rainbow'
+
 " Code Style
 Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/nerdcommenter'
 
 " Docs
-Plug 'rizzatti/dash.vim'
-Plug 'Shougo/echodoc.vim'
+"Plug 'rizzatti/dash.vim'
+"Plug 'Shougo/echodoc.vim'
 
 " project mgmt
 Plug 'jceb/vim-orgmode'
@@ -60,31 +62,7 @@ Plug 'jceb/vim-orgmode'
 " Linting
 Plug 'w0rp/ale'
 
-if has('nvim')
-  " completion
-  if has('win32') || has('win64')
-    Plug 'autozimu/LanguageClient-neovim', {
-	 \ 'branch': 'next',
-	 \ 'do': 'powershell -executionpolicy bypass -File install.ps1',
-	 \ }
-  else
-    Plug 'autozimu/LanguageClient-neovim', {
-	 \ 'branch': 'next',
-	 \ 'do': 'bash install.sh',
-	 \ }
-  endif
-
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'Shougo/neco-syntax'
-  Plug 'Shougo/neco-vim'
-  Plug 'ezpuzz/deoplete-emoji', { 'branch': 'submodule-emojis' }
-  Plug 'zchee/deoplete-jedi'
-  Plug 'carlitux/deoplete-ternjs', { 'do': 'yarn global add tern' }
-
-  " TODO: use these with deoplete more
-  Plug 'SirVer/ultisnips'
-  Plug 'honza/vim-snippets'
-endif
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
 Plug 'Shougo/neopairs.vim' " automatic closing parens on complete
 
@@ -97,7 +75,7 @@ Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-rhubarb' " issue numbers and mentions in git commit messages
-Plug 'rhysd/committia.vim'
+"Plug 'rhysd/committia.vim'
 
 " syntax
 "
@@ -117,6 +95,10 @@ Plug 'Einenlum/yaml-revealer'
 Plug 'chr4/nginx.vim'
 
 Plug 'gabrielelana/vim-markdown'
+
+Plug 'jparise/vim-graphql'
+
+"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " ember
 Plug 'mustache/vim-mustache-handlebars', { 'for': ['html.handlebars'] }
@@ -142,26 +124,17 @@ Plug 'tapayne88/vim-mochajs'
 "Plug 'HerringtonDarkholme/yats.vim'
 Plug 'leafgarland/typescript-vim'
 
-if has('win32')
-  Plug 'mhartington/nvim-typescript', { 'for': ['typescript'] }
-else
-  Plug 'mhartington/nvim-typescript', {'do': './install.sh', 'for': ['typescript'] }
-endif
-
 " for future use if needed
 "Plug 'flowtype/vim-flow'
 "Plug 'mxw/vim-jsx'
 
 " python
-Plug 'metakirby5/codi.vim', { 'for': ['python'] }
+"Plug 'metakirby5/codi.vim', { 'for': ['python'] }
 Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
 
 " flutter
 Plug 'reisub0/hot-reload.vim', { 'for': ['dart'] }
 Plug 'dart-lang/dart-vim-plugin', { 'for': ['dart'] }
-
-" go
-Plug 'fatih/vim-go', { 'for': ['go'] }
 
 " Docker
 Plug 'ekalinin/Dockerfile.vim', { 'for': ['Dockerfile'] }
@@ -230,7 +203,7 @@ set noshowmode
 " Whitespace
 set nowrap
 set textwidth=100
-set formatoptions+=cqln1j
+set formatoptions+=cqln1jro
 set expandtab
 
 " diffs
@@ -270,9 +243,6 @@ autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
-
-" persisten undo
-set undofile
 
 " better grepping
 if executable('rg')
@@ -330,8 +300,15 @@ command! -nargs=+ Tg :T git <args>
 :nnoremap <A-k> <C-w>k
 :nnoremap <A-l> <C-w>l
 
-set nobackup
-set noswapfile
+set backup
+set swapfile
+set undofile
+
+set backupcopy=no
+
+set backupdir=~/.config/nvim/.backup/
+set directory=~/.config/nvim/.swp/
+set undodir=~/.config/nvim/.undo/
 
 set smartindent
 
@@ -398,21 +375,25 @@ nmap <silent> <leader>j <Plug>(ale_next_wrap)
 
 let g:ale_fixers = {
 \  'javascript': ['prettier', 'eslint'],
+\  'scss': ['prettier', 'stylelint'],
 \  'json': ['prettier'],
 \  'typescript': ['tslint', 'prettier'],
 \  'go': ['gofmt'],
 \  'markdown': ['prettier'],
-\  'yaml': ['prettier']
+\  'yaml': ['prettier'],
+\  'python': ['autopep8', 'remove_trailing_lines', 'trim_whitespace']
 \}
 let g:ale_linters = {
 \  'javascript': ['eslint'],
 \  'typescript': ['eslint', 'tslint', 'tsserver'],
-\  'go': ['gometalinter'],
+\  'go': ['gofmt', 'gobuild', 'golangci-lint'],
 \  'html': ['alex', 'htmlhint', 'tidy', 'ember-template-lint']
 \}
+let g:ale_go_gometalinter_options = '--fast'
 let g:ale_completion_enabled = 0
 let g:ale_fix_on_save = 1
 let g:ale_history_enabled = 1
+let g:ale_ruby_rubocop_executable = 'bundle'
 
 " mustache
 let g:mustache_abbreviations = 1
@@ -433,22 +414,35 @@ let g:closetag_filenames = '*.html,*.hbs'
 let g:closetag_filetypes = 'html,html.handlebars'
 
 " dash.vim
-let g:dash_activate = 0
-nnoremap <Leader>d :Dash<CR>
+"let g:dash_activate = 0
+"nnoremap <Leader>d :Dash<CR>
+
 let g:jedi#completions_enabled = 0
+
+let g:rainbow_active = 1
 
 
 autocmd FileType make setlocal noexpandtab
 
 if has('mac')
-  set clipboard=unnamedplus
+  let g:clipboard = {
+  \ 'name': 'pbcopy',
+  \ 'copy': {
+  \    '+': 'pbcopy',
+  \    '*': 'pbcopy',
+  \  },
+  \ 'paste': {
+  \    '+': 'pbpaste',
+  \    '*': 'pbpaste',
+  \ },
+  \ 'cache_enabled': 0,
+  \ }
 endif
 
-if has('nvim')
-  source $HOME/.config/nvim/deoplete.vim
-endif
+set clipboard=unnamed
 
 source $HOME/.config/nvim/python.vim
+source $HOME/.config/nvim/coc.vim
 
 " save all when leaving terminal
 au FocusLost * silent! wa

@@ -15,7 +15,7 @@ brew "yadm"
 brew "chunkwm", args: ["HEAD"]
 brew "skhd", args: ["HEAD"]
 brew "curl", args: ["with-c-ares", "with-nghttp2"]
-brew "neovim", args: ["HEAD"]
+brew "neovim"
 brew "mp3val"
 brew "openssl"
 brew "ripgrep"
@@ -33,6 +33,24 @@ cask "kitty"
 cask "font-inconsolata-nerd-font"
 
 brew "yarn", args: ["without-node"]
+brew "node@10"
 
 brew "pre-commit"
 brew "kubernetes-helm"
+
+brew "gnu-sed"
+brew "bash"
+brew "awscli"
+brew "go"
+brew "make"
+brew "fswatch"
+brew "dep"
+brew "grep"
+brew "hadolint"
+brew "jq"
+
+cask "gswitch"
+
+brew "kubernetes-cli"
+
+brew "talal/tap/mimir"

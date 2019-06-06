@@ -1,13 +1,16 @@
 [user]
 	email = epetermann@neighborly.com
 	name = Emory Petermann
+	signingkey = C2E1300EC48ED1732D092708A1999F730430DC8E
 [core]
 	editor = nvim -u ~/.config/nvim/git.vim
 	pager = emojify | diff-so-fancy | less --tabs=4 -RF
 	autocrlf = false
+	ignorecase = false
 [commit]
   ;template = ~/.gitmessage
 	cleanup = strip
+	gpgsign = true
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	lgd = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit develop..
