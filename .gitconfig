@@ -1,53 +1,78 @@
 [user]
-	email = epetermann@neighborly.com
-	name = Emory Petermann
-	signingkey = C2E1300EC48ED1732D092708A1999F730430DC8E
+  name = Emory Petermann
 [core]
-	editor = nvim -u ~/.config/nvim/git.vim
-	pager = emojify | diff-so-fancy | less --tabs=4 -RF
-	autocrlf = false
-	ignorecase = false
+  editor = vim -u ~/.config/nvim/git.vim
+#	pager = diff-so-fancy | less --tabs=4 -RF
+  preloadindex = true
+  autocrlf = false
+  ignorecase = false
 [commit]
-  ;template = ~/.gitmessage
-	cleanup = strip
-	gpgsign = true
+  cleanup = strip
+[push]
+  default = current
 [alias]
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	lgd = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit develop..
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  a = add
+  ap = add -p
+  aa = add .
+  ac = !git add -A && git commit -m
+  c = commit --verbose
+  ca = commit -a --verbose
+  cm = commit -m
+  cam = commit -a -m
+  m = commit --amend --verbose
+
+  d = diff
+  ds = diff --stat
+  dc = diff --cached
+  a = add
+  ap = add -p
+  aa = add .
+  c = commit --verbose
+  ca = commit -a --verbose
+  cm = commit -m
+  cam = commit -a -m
+  m = commit --amend --verbose
+
+  d = diff
+  ds = diff --stat
+  dc = diff --cached
+
+  s = status -s
+  st = status
+  co = checkout
+  cob = checkout -b
+ # list branches sorted by last modified
+  b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+
+ # list aliases
+  la = "!git config -l | grep alias | cut -c 7-"
 [pull]
-	rebase = true
+  rebase = true
+[url "ssh://git@github.com/"]
+  insteadOf = https://github.com/
+[color "diff"]
+  whitespace = red reverse
 [rerere]
-	enabled = true
+  enabled = true
 [diff-so-fancy]
-	markEmptyLines = false
-	stripLeadingSymbols = false
-[diff]
-  tool = vimdiff
-  guitool = kitty.gui
-[difftool]
-  prompt=false
-  trustExitCode = true
-[difftool "kitty"]
-  cmd = kitty +kitten diff $LOCAL $REMOTE
-[difftool "kitty.gui"]
-  cmd = kitty kitty +kitten diff $LOCAL $REMOTE
+  markEmptyLines = false
+  stripLeadingSymbols = false
+[status]
+  submoduleSummary = true
 [rebase]
   autostash = true
 [fetch]
   recurseSubmodules = true
+[gc]
+  auto = 256
 [winUpdater]
-	recentlySeenVersion = 2.19.1.windows.1
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-[difftool "vimdiff"]
-	cmd = vimdiff -u NONE $LOCAL $REMOTE
-[url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
-[branch]
-	autosetuprebase = always
-	autosetupmerge = always
-[push]
-	default = simple
+  recentlySeenVersion = 2.24.0.windows.2
+[includeIf "gitdir:~/"]
+  path = ~/.gitconfig-default
+[includeIf "gitdir:repos/"]
+  path = ~/.gitconfig-default
+[includeIf "gitdir:capbase/"]
+  path = ~/.gitconfig-capbase
+[gui]
+  recentrepo = E:/repos/capbase
