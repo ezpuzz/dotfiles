@@ -21,9 +21,12 @@ call plug#begin('~/.config/nvim/plugged')
   " source control
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
+
+  Plug 'tpope/vim-unimpaired'
+  Plug 'w0rp/ale'
 call plug#end()
 
-if (has("termguicolors"))
+if has("termguicolors")
   set termguicolors
 endif
 
@@ -33,11 +36,13 @@ colorscheme tender
 set cursorline
 set textwidth=72
 set nofoldenable
+set co=100
 
 if has('nvim')
   source $HOME/.config/nvim/python.vim
 endif
 
+set clipboard=unnamed
 
 filetype plugin indent on
 filetype on

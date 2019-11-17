@@ -1,3 +1,10 @@
+set encoding=utf-8
+
+" to allow sourcing again without adding extra autocommands
+autocmd!
+
+
+
 " Install vim-plug if missing
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -20,36 +27,42 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'tpope/vim-sensible'
 
 " terminal
-Plug 'kassio/neoterm'
+"Plug 'kassio/neoterm'
 
 " run tests within vim
-Plug 'skywind3000/asyncrun.vim'
-Plug 'janko-m/vim-test'
+"Plug 'skywind3000/asyncrun.vim'
+"Plug 'janko-m/vim-test'
 
 " global commands
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
-Plug 'justinmk/vim-sneak'
-Plug 'wellle/targets.vim'
-Plug 'terryma/vim-multiple-cursors'
+
+"Plug 'justinmk/vim-sneak'
+"Plug 'wellle/targets.vim'
+"
+"Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-projectionist'
 Plug 'jiangmiao/auto-pairs'
 
 " appearance
-Plug 'jacoborus/tender.vim'
+"Plug 'jacoborus/tender.vim'
 Plug 'morhetz/gruvbox'
-Plug 'arakashic/nvim-colors-solarized'
+"Plug 'arakashic/nvim-colors-solarized'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
-Plug 'chrisbra/Colorizer'
 
-Plug 'luochen1990/rainbow'
+" show hex colors as the color they are
+"Plug 'chrisbra/Colorizer'
+
+" rainbow parens
+" FIXME: problem with javascrip syntax
+" Plug 'luochen1990/rainbow'
 
 " Code Style
 Plug 'editorconfig/editorconfig-vim'
-Plug 'junegunn/vim-easy-align'
+"Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/nerdcommenter'
 
 " Docs
@@ -57,42 +70,39 @@ Plug 'scrooloose/nerdcommenter'
 "Plug 'Shougo/echodoc.vim'
 
 " project mgmt
-Plug 'jceb/vim-orgmode'
+"Plug 'jceb/vim-orgmode'
 
 " Linting
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-
-Plug 'Shougo/neopairs.vim' " automatic closing parens on complete
+"Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 " file searching
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 
+Plug 'yssl/QFEnter'
+
 " source control
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-rhubarb' " issue numbers and mentions in git commit messages
+
 "Plug 'rhysd/committia.vim'
 
 " syntax
 "
-Plug 'bfontaine/Brewfile.vim'
+"Plug 'bfontaine/Brewfile.vim'
 
-Plug 'kchmck/vim-coffee-script'
-
-Plug 'elzr/vim-json'
-
-Plug 'kchmck/vim-coffee-script', { 'for': ['coffeescript'] }
+"Plug 'kchmck/vim-coffee-script', { 'for': ['coffeescript'] }
 Plug 'elzr/vim-json', { 'for': ['json'] }
 
-Plug 'tfnico/vim-gradle'
-Plug 'stephpy/vim-yaml'
-Plug 'Einenlum/yaml-revealer'
+"Plug 'tfnico/vim-gradle'
+"Plug 'stephpy/vim-yaml'
+"Plug 'Einenlum/yaml-revealer'
 
-Plug 'chr4/nginx.vim'
+"Plug 'chr4/nginx.vim'
 
 Plug 'gabrielelana/vim-markdown'
 
@@ -101,49 +111,51 @@ Plug 'jparise/vim-graphql'
 "Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " ember
-Plug 'mustache/vim-mustache-handlebars', { 'for': ['html.handlebars'] }
-Plug 'joukevandermaas/vim-ember-hbs', { 'for': ['html.handlebars'] }
+"Plug 'mustache/vim-mustache-handlebars', { 'for': ['html.handlebars'] }
+Plug 'joukevandermaas/vim-ember-hbs'
 Plug 'AndrewRadev/ember_tools.vim'
 
+Plug 'othree/html5.vim'
+
 " html
-Plug 'alvan/vim-closetag', { 'for': ['xml', 'html.handlebars', 'html', 'jsx'] }
-Plug 'mattn/emmet-vim', { 'for': ['xml', 'html.handlebars', 'html', 'jsx'] }
+Plug 'alvan/vim-closetag'
+"Plug 'mattn/emmet-vim', { 'for': ['xml', 'html.handlebars', 'html', 'jsx'] }
 
 " ruby / rails
-Plug 'tpope/vim-rails', { 'for': ['ruby'] }
-Plug 'tpope/vim-bundler', { 'for': ['ruby'] }
-Plug 'vim-ruby/vim-ruby', { 'for': ['ruby'] }
+"Plug 'tpope/vim-rails', { 'for': ['ruby'] }
+"Plug 'tpope/vim-bundler', { 'for': ['ruby'] }
+"Plug 'vim-ruby/vim-ruby', { 'for': ['ruby'] }
 
 " js
 Plug 'pangloss/vim-javascript', { 'for': ['javascript'] }
 
-Plug 'tapayne88/vim-mochajs'
+"Plug 'tapayne88/vim-mochajs'
 
 
 " both of these are typescript syntax but don't know which is bettter
 "Plug 'HerringtonDarkholme/yats.vim'
-Plug 'leafgarland/typescript-vim'
+"Plug 'leafgarland/typescript-vim'
 
 " for future use if needed
 "Plug 'flowtype/vim-flow'
-"Plug 'mxw/vim-jsx'
-
+Plug 'MaxMEllon/vim-jsx-pretty'
+"
 " python
 "Plug 'metakirby5/codi.vim', { 'for': ['python'] }
-Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
+"Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
 
 " flutter
-Plug 'reisub0/hot-reload.vim', { 'for': ['dart'] }
-Plug 'dart-lang/dart-vim-plugin', { 'for': ['dart'] }
+"Plug 'reisub0/hot-reload.vim', { 'for': ['dart'] }
+"Plug 'dart-lang/dart-vim-plugin', { 'for': ['dart'] }
 
 " Docker
-Plug 'ekalinin/Dockerfile.vim', { 'for': ['Dockerfile'] }
+"Plug 'ekalinin/Dockerfile.vim', { 'for': ['Dockerfile'] }
 
 " powershell
 Plug 'PProvost/vim-ps1'
 
 " Jenkins
-Plug 'martinda/Jenkinsfile-vim-syntax'
+"Plug 'martinda/Jenkinsfile-vim-syntax'
 
 " time tracking
 Plug 'wakatime/vim-wakatime'
@@ -156,13 +168,23 @@ endif
 call plug#end()
 
 " 24-bit color themes
-if (has("termguicolors"))
+if has("termguicolors")
   set termguicolors
 endif
 
-" let g:solarized_termcolors=16
-" let g:solarized_italic=0
-" let g:solarized_bold=0
+if has('gui_running')
+  set lines=60
+  set co=130
+  set guifont=PragmataPro\ Mono\ Liga:h12
+  set guioptions-=L
+  set guioptions-=T
+  set guioptions-=t
+  set guioptions-=m
+  set guioptions-=r
+  set guioptions+=c
+  winp 1400 150
+endif
+
 if has('win32') || has('win32unix')
         " use default terminal background color
         if !has("gui_running")
@@ -173,14 +195,29 @@ if has('win32') || has('win32unix')
         endif
 
         set background=dark
+        let g:gruvbox_italic=0
         colorscheme gruvbox
+
+        set lsp=1
+
+        if !has('nvim')
+          set bdlay=0
+          set rop=type:directx
+        endif
 else
+  " let g:solarized_termcolors=16
+  " let g:solarized_italic=0
+  " let g:solarized_bold=0
+  "
         set background=light
         colorscheme solarized
 endif
 
 " reduce flicker
 set noshowcmd
+
+" prevent accidental quit
+cabbrev q <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'close' : 'q')<CR>
 
 " use fancy airline fonts
 let g:airline_powerline_fonts = 1
@@ -238,11 +275,15 @@ vnoremap // y/<C-R>"<CR>
 set mouse=a
 
 " fzf
+let $FZF_DEFAULT_COMMAND = 'rg --files'
 nnoremap <C-p> :FZF<CR>
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
+
+" projectionist
+nnoremap <Leader>p :A<CR>
 
 " better grepping
 if executable('rg')
@@ -330,6 +371,8 @@ let g:gitgutter_override_sign_column_highlight = 1
 " Startify
 let g:startify_fortune_use_unicode = 1
 let g:startify_change_to_vcs_root = 1
+let g:startify_session_persistence = 1
+let g:startify_session_sort = 1
 if !has('win32')
   function! StartifyEntryFormat()
     return 'WebDevIconsGetFileTypeSymbol(absolute_path) ."  ". entry_path'
@@ -337,16 +380,18 @@ if !has('win32')
 endif
 
 " AsyncRun
-command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
-let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
-"autocmd FileType markdown :AsyncRun grip -b %
-augroup vimrc
-    autocmd QuickFixCmdPost * call asyncrun#quickfix_toggle(8, 1)
-augroup END
-augroup quickfix
-    autocmd!
-    autocmd FileType qf setlocal wrap
-augroup END
+if exists(':AsyncRun')
+  command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+  let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
+  "autocmd FileType markdown :AsyncRun grip -b %
+  augroup vimrc
+      autocmd QuickFixCmdPost * call asyncrun#quickfix_toggle(8, 1)
+  augroup END
+  augroup quickfix
+      autocmd!
+      autocmd FileType qf setlocal wrap
+  augroup END
+endif
 
 " vim-test
 nnoremap <silent> ,rt :wa<cr>:TestNearest<cr>
@@ -361,39 +406,6 @@ let g:test#strategy = 'asyncnoscroll'
 let g:test#runner_commands = ['Mocha']
 let g:test#enabled_runners = ["javascript#mocha"]
 let g:test#preserve_screen = 1
-
-" ALE linting
-let g:airline#extensions#ale#enabled = 1
-
-let g:ale_sign_error = '✘'
-let g:ale_sign_warning = '⚠'
-highlight ALEErrorSign ctermbg=NONE ctermfg=red
-highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
-
-nmap <silent> <leader>k <Plug>(ale_previous_wrap)
-nmap <silent> <leader>j <Plug>(ale_next_wrap)
-
-let g:ale_fixers = {
-\  'javascript': ['prettier', 'eslint'],
-\  'scss': ['prettier', 'stylelint'],
-\  'json': ['prettier'],
-\  'typescript': ['tslint', 'prettier'],
-\  'go': ['gofmt'],
-\  'markdown': ['prettier'],
-\  'yaml': ['prettier'],
-\  'python': ['autopep8', 'remove_trailing_lines', 'trim_whitespace']
-\}
-let g:ale_linters = {
-\  'javascript': ['eslint'],
-\  'typescript': ['eslint', 'tslint', 'tsserver'],
-\  'go': ['gofmt', 'gobuild', 'golangci-lint'],
-\  'html': ['alex', 'htmlhint', 'tidy', 'ember-template-lint']
-\}
-let g:ale_go_gometalinter_options = '--fast'
-let g:ale_completion_enabled = 0
-let g:ale_fix_on_save = 1
-let g:ale_history_enabled = 1
-let g:ale_ruby_rubocop_executable = 'bundle'
 
 " mustache
 let g:mustache_abbreviations = 1
@@ -421,7 +433,6 @@ let g:jedi#completions_enabled = 0
 
 let g:rainbow_active = 1
 
-
 autocmd FileType make setlocal noexpandtab
 
 if has('mac')
@@ -441,10 +452,48 @@ endif
 
 set clipboard=unnamed
 
+source $HOME/.config/nvim/ale.vim
 source $HOME/.config/nvim/python.vim
-source $HOME/.config/nvim/coc.vim
+"source $HOME/.config/nvim/coc.vim
 
 " save all when leaving terminal
 au FocusLost * silent! wa
 
 autocmd BufEnter * :syntax sync fromstart
+
+function s:MkNonExDir(file, buf)
+    if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
+        let dir=fnamemodify(a:file, ':h')
+        if !isdirectory(dir)
+            call mkdir(dir, 'p')
+        endif
+    endif
+endfunction
+augroup BWCCreateDir
+    autocmd!
+    autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
+augroup END
+
+augroup javascript_folding
+    au!
+    au FileType javascript setlocal foldmethod=syntax
+augroup END
+
+let b:surround_indent = 0
+
+" handlebars indent is messed up
+augroup handlebarsIndent
+  au!
+  au Filetype html.handlebars setlocal filetype=handlebars
+augroup END
+
+let g:html_indent_inctags = "p,div,LinkTo"
+
+" QFEnter
+let g:qfenter_keymap = {}
+let g:qfenter_keymap.vopen = ['<C-v>']
+let g:qfenter_keymap.hopen = ['<C-CR>', '<C-s>', '<C-x>']
+let g:qfenter_keymap.topen = ['<C-t>']
+
+
+command! PU PlugUpdate | PlugUpgrade
