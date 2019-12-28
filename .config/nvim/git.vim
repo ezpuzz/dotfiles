@@ -1,5 +1,15 @@
-set nocp
-filetype off
+set encoding=utf-8
+
+if &compatible
+  set nocompatible
+endif
+
+" to allow sourcing again without adding extra autocommands
+autocmd!
+
+packadd minpac
+
+call minpac#init({ 'jobs': 0 })
 
 " mintty cursor shapes
 if has('win32unix')
@@ -9,43 +19,36 @@ if has('win32unix')
   let &t_te.="\e[0 q"
 endif
 
-call plug#begin('~/.config/nvim/plugged')
-  Plug 'jacoborus/tender.vim'
+call minpac#add('jacoborus/tender.vim')
 
-  Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+call minpac#add('neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'})
+source $HOME/.config/nvim/coc.vim
 
-  Plug 'tpope/vim-sensible'
-  Plug 'editorconfig/editorconfig-vim'
-  Plug 'wakatime/vim-wakatime'
+call minpac#add('tpope/vim-sensible')
+call minpac#add('editorconfig/editorconfig-vim')
+call minpac#add('wakatime/vim-wakatime')
 
-  " source control
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-rhubarb'
+" source control
+"call minpac#add('tpope/vim-fugitive')
+"call minpac#add('tpope/vim-rhubarb')
 
-  Plug 'tpope/vim-unimpaired'
-  Plug 'w0rp/ale'
-call plug#end()
+call minpac#add('tpope/vim-unimpaired')
+call minpac#add('dense-analysis/ale')
 
 if has("termguicolors")
   set termguicolors
 endif
 
-set background=dark
 colorscheme tender
+set background=dark
 
-set cursorline
-set textwidth=72
 set nofoldenable
-set co=100
+set textwidth=72
+set clipboard=unnamed
 
 if has('nvim')
   source $HOME/.config/nvim/python.vim
 endif
 
-set clipboard=unnamed
-
-filetype plugin indent on
-filetype on
-
-syntax on
+" syntax all the way down
 autocmd BufEnter * :syntax sync fromstart

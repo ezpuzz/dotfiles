@@ -4,6 +4,7 @@
   editor = vim -u ~/.config/nvim/git.vim
 #	pager = diff-so-fancy | less --tabs=4 -RF
   preloadindex = true
+  fscache = true
   autocrlf = false
   ignorecase = false
 [commit]
@@ -59,7 +60,7 @@
   markEmptyLines = false
   stripLeadingSymbols = false
 [status]
-  submoduleSummary = true
+  ;submoduleSummary = true
 [rebase]
   autostash = true
 [fetch]
@@ -67,7 +68,7 @@
 [gc]
   auto = 256
 [winUpdater]
-  recentlySeenVersion = 2.24.0.windows.2
+	recentlySeenVersion = 2.24.1.windows.2
 [includeIf "gitdir:~/"]
   path = ~/.gitconfig-default
 [includeIf "gitdir:repos/"]
