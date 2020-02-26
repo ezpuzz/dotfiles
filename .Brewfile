@@ -1,8 +1,8 @@
 
 tap "homebrew/services"
 tap "domt4/autoupdate"
-tap "caskroom/cask"
-tap "caskroom/fonts"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
 tap "crisidev/homebrew-chunkwm"
 tap "koekeishiya/formulae"
 tap "chrokh/tap"
@@ -29,7 +29,6 @@ brew "tree"
 brew "grip"
 brew "base16-manager"
 
-cask "kitty"
 cask "font-inconsolata-nerd-font"
 
 brew "yarn", args: ["without-node"]
