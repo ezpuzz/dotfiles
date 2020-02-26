@@ -9,7 +9,7 @@ COMPLETION_WAITING_DOTS="true"
 
 DEFAULT_USER="emorypetermann"
 
-plugins=(gpg-agent colored-man-pages fast-syntax-highlighting)
+plugins=(gpg-agent colored-man-pages)
 plugins+=(gitfast git github git-auto-fetch)
 plugins+=(yarn)
 plugins+=(ember-cli)
@@ -145,16 +145,6 @@ then
   unsetopt BG_NICE
 fi
 
-# v - open files in ~/.viminfo
-#v() {
-#  local files
-#  files=$(grep '^>' ~/.viminfo | cut -c3- |
-#    while read line; do
-#      [ -f "${line/\~/$HOME}" ] && echo "$line"
-#    done | fzf-tmux -d -m -q "$*" -1) && vim ${files//\~/$HOME}
-#  }
-
-
 pathadd() {
     if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
         PATH="${PATH:+"$PATH:"}$1"
@@ -162,10 +152,14 @@ pathadd() {
 }
 
 pathadd $HOME/.local/bin
-pathadd $(go env GOPATH)/bin
+#pathadd $(go env GOPATH)/bin
 pathadd /usr/local/opt/
 #pathadd $HOME/flutter/bin
 #pathadd $HOME/.pub-cache/bin
+pathadd $HOME/.yarn/bin
+pathadd $HOME/.gem/bin
+
+export GEM_HOME=$HOME/.gem
 
 # Codi
 # Usage: codi [filetype] [filename]
@@ -219,16 +213,11 @@ complete -F _yargs_completions graphql
 export KUBECONFIG=~/.kube/config
 export KUBE_EDITOR="nvim"
 
-## MIMIR
-autoload -Uz add-zsh-hook
-prompt_mimir_cmd() { /usr/local/bin/mimir }
-add-zsh-hook precmd prompt_mimir_cmd
-
-prompt_symbol='❯'
-PROMPT='%(?.%F{magenta}.%F{red})${prompt_symbol}%f '
-
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/emorypetermann/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/emorypetermann/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/emorypetermann/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/emorypetermann/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+eval "$(starship init zsh)"
+source /Users/emory/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
