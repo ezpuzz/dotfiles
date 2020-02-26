@@ -41,4 +41,5 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 # gpg --keyserver hkp://pgp.mit.edu --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
 # \curl -sSL https://get.rvm.io | bash
 
-# curl -L https://git.io/n-install | bash -s -- -y
+#curl -L https://git.io/n-install | bash -s -- -y
+sh -c "curl https://raw.githubusercontent.com/heziode/emojify/master/emojify -o /usr/local/bin/emojify && chmod +x /usr/local/bin/emojify"
