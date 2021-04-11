@@ -7,15 +7,13 @@ ZSH_THEME=""
 HYPHEN_INSENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
 
-DEFAULT_USER="emorypetermann"
+DEFAULT_USER="emory"
 
 plugins=(gpg-agent colored-man-pages)
-plugins+=(gitfast git github git-auto-fetch)
+plugins+=(gitfast git git-auto-fetch)
 plugins+=(yarn)
-plugins+=(ember-cli)
-plugins+=(docker docker-compose docker-machine)
-plugins+=(kubectl)
-plugins+=(rbenv)
+plugins+=(docker docker-compose)
+plugin+=(pyenv python)
 plugins+=(z)
 source $ZSH/oh-my-zsh.sh
 
@@ -36,11 +34,9 @@ zstyle ':completion:*' matcher-list '' \
   'r:|?=** m:{a-z\-}={A-Z\_}'
 
 export LANG=en_US.UTF-8
-export MAKEFLAGS="-j8"
+export MAKEFLAGS="-j$(nproc)"
 
 alias lg='git lg'
-alias ag='ag --path-to-ignore ~/.agignore'
-alias gpr='hub pull-request'
 alias vim='nvim'
 alias yc='yadm commit -v'
 alias ys='yadm status'
@@ -50,10 +46,6 @@ alias kd="git difftool --no-symlinks --dir-diff"
 alias dp="docker container prune -f && docker volume prune -f"
 alias bss="brew services start"
 
-#ember aliases
-alias ei='ember install --yarn'
-
-#ripgrep
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -82,11 +74,6 @@ _fzf_compgen_dir() {
 export FZF_DEFAULT_COMMAND='fd --type f --color=always'
 export FZF_DEFAULT_OPTS='--ansi --inline-info'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
-#export NDK_ROOT=/usr/local/Cellar/android-ndk/r10e
-#export ANDROID_HOME=/Users/emorypetermann/Library/Android/sdk
-#export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$PATH"
-
 
 # fbr - checkout git branch (including remote branches)
 fbr() {
@@ -126,6 +113,7 @@ fo() {
   fi
 }
 
+# Increase ulimits (for broccoli for example)
 ulimit -n 1024
 ulimit -u 2048
 ulimit -Sn 16384
@@ -151,73 +139,14 @@ pathadd() {
     fi
 }
 
-pathadd $HOME/.local/bin
-#pathadd $(go env GOPATH)/bin
 pathadd /usr/local/opt/
-#pathadd $HOME/flutter/bin
-#pathadd $HOME/.pub-cache/bin
+pathadd $HOME/.local/bin
 pathadd $HOME/.yarn/bin
-pathadd $HOME/.gem/bin
 
-export GEM_HOME=$HOME/.gem
-
-# Codi
-# Usage: codi [filetype] [filename]
-#codi() {
-#  local syntax="${1:-python}"
-#  shift
-#  vim -c \
-#    "let g:startify_disable_at_vimenter = 1 |\
-#    set bt=nofile ls=0 noru nonu nornu |\
-#    hi ColorColumn ctermbg=NONE |\
-#    hi VertSplit ctermbg=NONE |\
-#    hi NonText ctermfg=0 |\
-#    Codi $syntax" "$@"
-#}
-
-# Docker stuff
 export DOCKER_HIDE_LEGACY_COMMANDS=true
 
-# auto exec commands as npm packages as fallback
-source <(npx --shell-auto-fallback zsh)
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
 
-###-begin-graphql-completions-###
-#
-# yargs command completion script
-#
-# Installation: node_modules/.bin/graphql completion >> ~/.bashrc
-#    or node_modules/.bin/graphql completion >> ~/.bash_profile on OSX.
-#
-_yargs_completions()
-{
-    local cur_word args type_list
-
-    cur_word="${COMP_WORDS[COMP_CWORD]}"
-    args=("${COMP_WORDS[@]}")
-
-    # ask yargs to generate completions.
-    type_list=$(node_modules/.bin/graphql --get-yargs-completions "${args[@]}")
-
-    COMPREPLY=( $(compgen -W "${type_list}" -- ${cur_word}) )
-
-    # if no match was found, fall back to filename completion
-    if [ ${#COMPREPLY[@]} -eq 0 ]; then
-      COMPREPLY=( $(compgen -f -- "${cur_word}" ) )
-    fi
-
-    return 0
-}
-complete -F _yargs_completions graphql
-###-end-graphql-completions-###
-
-export KUBECONFIG=~/.kube/config
-export KUBE_EDITOR="nvim"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/emorypetermann/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/emorypetermann/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/emorypetermann/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/emorypetermann/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
+source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 eval "$(starship init zsh)"
-source /Users/emory/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

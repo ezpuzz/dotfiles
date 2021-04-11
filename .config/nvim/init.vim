@@ -145,8 +145,8 @@ call minpac#add('dense-analysis/ale')
 " html-beautify - bad compat with handlebars
 
 
-call minpac#add('neoclide/coc.nvim', {'do': 'silent! yarn install --frozen-lockfile'})
-source $HOME/.config/nvim/coc.vim
+"call minpac#add('neoclide/coc.nvim', {'do': 'silent! yarn install --frozen-lockfile'})
+"source $HOME/.config/nvim/coc.vim
 
 " file searching
 call minpac#add('junegunn/fzf', { 'do': './install --all && ln -s $(pwd) ~/.fzf'})
