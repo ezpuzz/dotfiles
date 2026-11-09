@@ -25,7 +25,7 @@ if [ "$system_type" = "Darwin" ]; then
   ~/.local/share/mise/installs/python/latest/bin/python3 -m pip install --upgrade pynvim
   mkdir -p ~/.config/nvim/.swp ~/.config/nvim/.undo
   # install the minpac plugins (a missing-colorscheme error on the first run is expected)
-  mise exec -- nvim --headless -c "call minpac#update('', {'do': 'quit'})"
+  mise exec -- nvim --headless --cmd 'let g:startify_disable_at_vimenter = 1' -c "call minpac#update('', {'do': 'quit'})"
 
   ln -s /Applications/kitty.app/Contents/Resources/terminfo ~/.terminfo
 
