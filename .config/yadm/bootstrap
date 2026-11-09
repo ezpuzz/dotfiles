@@ -18,6 +18,9 @@ if [ "$system_type" = "Darwin" ]; then
     brew bundle --global
   fi
 
+  # global tools from ~/.config/mise/config.toml (mise comes from the Brewfile)
+  mise install
+
   ln -s /Applications/kitty.app/Contents/Resources/terminfo ~/.terminfo
 
   defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Max (editable)" 80
@@ -27,19 +30,11 @@ if [ "$system_type" = "Darwin" ]; then
   defaults write com.apple.BluetoothAudioAgent "Negotiated Bitpool" 80
   defaults write com.apple.BluetoothAudioAgent "Negotiated Bitpool Max" 80
   defaults write com.apple.BluetoothAudioAgent "Negotiated Bitpool Min" 80
-
-  brew services start skhd
 fi
 
 pip3 install --user neovim virtualenv
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 # gpg --keyserver hkp://pgp.mit.edu --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
 # \curl -sSL https://get.rvm.io | bash
 
 #curl -L https://git.io/n-install | bash -s -- -y
-sh -c "curl https://raw.githubusercontent.com/heziode/emojify/master/emojify -o /opt/homebrew/bin/emojify && chmod +x /opt/homebrew/bin/emojify"
-
-curl https://get.volta.sh | bash -s -- --skip-setup
-
-base16-manager install kdrag0n/base16-kitty
