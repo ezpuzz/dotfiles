@@ -1,77 +1,31 @@
 [user]
-  name = Emory Petermann
+	name = Emory Petermann
+	email = emory@onlyfor.us
 [core]
-  editor = vim -u ~/.config/nvim/git.vim
-  pager = emojify | diff-so-fancy | less --tabs=4 -RF
-  preloadindex = true
-  fscache = true
-  autocrlf = false
-  ignorecase = false
+	preloadindex = true
+	fscache = true
+	autocrlf = false
+	ignorecase = false
 [commit]
-  cleanup = strip
+	cleanup = strip
 [push]
-  default = current
+	default = current
+	autoSetupRemote = true
 [alias]
-  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-  a = add
-  ap = add -p
-  aa = add .
-  ac = !git add -A && git commit -m
-  c = commit --verbose
-  ca = commit -a --verbose
-  cm = commit -m
-  cam = commit -a -m
-  m = commit --amend --verbose
-
-  d = diff
-  ds = diff --stat
-  dc = diff --cached
-  a = add
-  ap = add -p
-  aa = add .
-  c = commit --verbose
-  ca = commit -a --verbose
-  cm = commit -m
-  cam = commit -a -m
-  m = commit --amend --verbose
-
-  d = diff
-  ds = diff --stat
-  dc = diff --cached
-
-  s = status -s
-  st = status
-  co = checkout
-  cob = checkout -b
- # list branches sorted by last modified
-  b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
-
- # list aliases
-  la = "!git config -l | grep alias | cut -c 7-"
+	lg = log --graph --abbrev-commit --decorate --date=short --format=format:\"%C(bold blue)%h%C(reset) %C(bold green)%ad%C(reset) %C(white)%<(50,trunc)%s%C(reset)%n%C(dim white)%an%C(reset)%C(auto)%d%C(reset)%n\"
 [pull]
-  rebase = true
+	rebase = true
 [color "diff"]
-  whitespace = red reverse
+	whitespace = red reverse
 [rerere]
-  enabled = true
-[diff-so-fancy]
-  markEmptyLines = false
-  stripLeadingSymbols = false
-[status]
-  ;submoduleSummary = true
+	enabled = true
 [rebase]
-  autostash = true
+	autostash = true
 [fetch]
-  recurseSubmodules = true
+	recurseSubmodules = true
 [gc]
-  auto = 256
+	auto = 256
 [winUpdater]
 	recentlySeenVersion = 2.24.1.windows.2
-[includeIf "gitdir:~/"]
-  path = ~/.gitconfig-default
-[includeIf "gitdir:repos/"]
-  path = ~/.gitconfig-default
-[includeIf "gitdir:capbase/"]
-  path = ~/.gitconfig-capbase
 [gui]
-  recentrepo = E:/repos/capbase
+	recentrepo = E:/repos/capbase

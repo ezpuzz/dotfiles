@@ -7,6 +7,22 @@ plugins=(git docker docker-compose npm uv python aws gh httpie zoxide mise node 
 eval "$(mise activate zsh)"
 source $ZSH/oh-my-zsh.sh
 
+setopt menu_complete
+setopt no_list_beep
+bindkey -M menuselect '^M' .accept-line # execute command when menu selecting
+
+zstyle ':bracketed-paste-magic' active-widgets '.self-*'
+
+setopt magicequalsubst
+
+setopt hist_ignore_all_dups
+
+# more wild autocomplete to skip letters in words
+zstyle ':completion:*' matcher-list '' \
+  'm:{a-z\-}={A-Z\_}' \
+  'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
+  'r:|?=** m:{a-z\-}={A-Z\_}'
+
 eval "$(atuin init zsh)"
 eval "$(starship init zsh)"
 
