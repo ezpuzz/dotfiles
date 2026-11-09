@@ -21,6 +21,10 @@ if [ "$system_type" = "Darwin" ]; then
   # global tools from ~/.config/mise/config.toml (mise comes from the Brewfile)
   mise install
 
+  # neovim: python provider (path matches ~/.config/nvim/python.vim), swap and undo dirs
+  ~/.local/share/mise/installs/python/latest/bin/python3 -m pip install --upgrade pynvim
+  mkdir -p ~/.config/nvim/.swp ~/.config/nvim/.undo
+
   ln -s /Applications/kitty.app/Contents/Resources/terminfo ~/.terminfo
 
   defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Max (editable)" 80

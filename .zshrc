@@ -44,5 +44,6 @@ eval "$(starship init zsh)"
 # LS_COLORS for eza and completion menus (gdircolors is brew coreutils)
 eval "$(${commands[gdircolors]:-dircolors} -b ~/.LS_COLORS)"
 alias ls='eza'
+alias vim='nvim'
 alias lg='git log --graph --abbrev-commit --decorate --date=short --format=format:"%C(bold blue)%h%C(reset) %C(bold green)%ad%C(reset) %C(white)%<(50,trunc)%s%C(reset)%n%C(dim white)%an%C(reset)%C(auto)%d%C(reset)%n"'
 export PATH="$HOME/.local/bin:$PATH"

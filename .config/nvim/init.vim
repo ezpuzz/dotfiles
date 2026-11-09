@@ -152,7 +152,6 @@ call minpac#add('tpope/vim-fugitive')
 call minpac#add('airblade/vim-gitgutter')
 set updatetime=800 " according to gitgutter docs
 let g:gitgutter_map_keys = 0
-let g:gitgutter_grep = 'rg --color=never'
 
 " rhubarb issue numbers and mentions in git commit messages
 call minpac#add('tpope/vim-rhubarb')
