@@ -2,7 +2,6 @@ tap "syntax-sh/tap"
 
 brew "less"
 brew "zsh", args: ["HEAD"]
-brew "zsh-autocomplete"
 brew "git"
 brew "yadm"
 brew "mise"

@@ -1,7 +1,9 @@
 export HOMEBREW_NO_ENV_HINTS=1
-DISABLE_MAGIC_FUNCTIONS=true
 export ZSH="$HOME/.oh-my-zsh"
+DISABLE_UPDATE_PROMPT=true
 ZSH_THEME=""
+HYPHEN_INSENSITIVE="true"
+COMPLETION_WAITING_DOTS="true"
 plugins=(git docker docker-compose npm uv python aws gh httpie zoxide mise node fzf rust eza extract jsontools encode64 copypath copybuffer aliases)
 # before oh-my-zsh: its plugins (zoxide, fzf, gh, eza, aws) look for mise-installed tools on PATH
 eval "$(mise activate zsh)"
@@ -22,6 +24,20 @@ zstyle ':completion:*' matcher-list '' \
   'm:{a-z\-}={A-Z\_}' \
   'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
   'r:|?=** m:{a-z\-}={A-Z\_}'
+
+export LANG=en_US.UTF-8
+export MAKEFLAGS="-j$(nproc)"
+export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
+export DOCKER_HIDE_LEGACY_COMMANDS=true
+
+export FZF_DEFAULT_COMMAND='fd --type f --color=always'
+export FZF_DEFAULT_OPTS='--ansi --inline-info'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# Increase ulimits (for broccoli for example)
+ulimit -n 1024
+ulimit -u 2048
+ulimit -Sn 16384
 
 eval "$(atuin init zsh)"
 eval "$(starship init zsh)"

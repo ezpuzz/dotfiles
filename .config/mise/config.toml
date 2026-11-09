@@ -17,7 +17,6 @@ go = "latest"
 neovim = "latest"
 hadolint = "latest"
 pre-commit = "latest"
-hub = "latest"
 cargo-binstall = "latest"
-# not in the mise registry; installed through the cargo backend
+# not in the mise registry; built by the cargo backend, which mise runs after rust
 "cargo:fastmod" = "latest"
