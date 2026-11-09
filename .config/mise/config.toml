@@ -18,5 +18,6 @@ neovim = "latest"
 hadolint = "latest"
 pre-commit = "latest"
 cargo-binstall = "latest"
+zellij = "latest"
 # not in the mise registry; built by the cargo backend, which mise runs after rust
 "cargo:fastmod" = "latest"
