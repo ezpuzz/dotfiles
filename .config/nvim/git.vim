@@ -21,19 +21,14 @@ endif
 
 call minpac#add('jacoborus/tender.vim')
 
-call minpac#add('neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'})
-source $HOME/.config/nvim/coc.vim
-
 call minpac#add('tpope/vim-sensible')
 call minpac#add('editorconfig/editorconfig-vim')
-call minpac#add('wakatime/vim-wakatime')
 
 " source control
 "call minpac#add('tpope/vim-fugitive')
 "call minpac#add('tpope/vim-rhubarb')
 
 call minpac#add('tpope/vim-unimpaired')
-call minpac#add('dense-analysis/ale')
 
 if has("termguicolors")
   set termguicolors

@@ -60,7 +60,6 @@ call minpac#add('jiangmiao/auto-pairs')
 "call minpac#add('skywind3000/asyncrun.vim')
 if exists(':AsyncRun')
   command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
-  let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
   "autocmd FileType markdown :AsyncRun grip -b %
   augroup vimrc
     autocmd QuickFixCmdPost * call asyncrun#quickfix_toggle(8, 1)
@@ -71,30 +70,23 @@ if exists(':AsyncRun')
   augroup END
 endif
 
-call minpac#add('janko-m/vim-test')
-nnoremap <silent> ,rt :wa<cr>:TestNearest<cr>
-nnoremap <silent> ,rf :wa<cr>:TestFile<cr>
-nnoremap <silent> ,rn :wa<cr>:TestNearest<cr>
-nnoremap <silent> ,rr :wa<cr>:TestLast<cr>
-function! AsyncRunNoScrollStrategy(cmd)
-  execute 'AsyncRun! '.a:cmd
-endfunction
-let g:test#custom_strategies = {'asyncnoscroll': function('AsyncRunNoScrollStrategy')}
-let g:test#strategy = 'asyncnoscroll'
-let g:test#runner_commands = ['Mocha']
-let g:test#enabled_runners = ["javascript#mocha"]
-let g:test#preserve_screen = 1
+"call minpac#add('janko-m/vim-test')
+"nnoremap <silent> ,rt :wa<cr>:TestNearest<cr>
+"nnoremap <silent> ,rf :wa<cr>:TestFile<cr>
+"nnoremap <silent> ,rn :wa<cr>:TestNearest<cr>
+"nnoremap <silent> ,rr :wa<cr>:TestLast<cr>
+"function! AsyncRunNoScrollStrategy(cmd)
+"  execute 'AsyncRun! '.a:cmd
+"endfunction
+"let g:test#custom_strategies = {'asyncnoscroll': function('AsyncRunNoScrollStrategy')}
+"let g:test#strategy = 'asyncnoscroll'
+"let g:test#runner_commands = ['Mocha']
+"let g:test#enabled_runners = ["javascript#mocha"]
+"let g:test#preserve_screen = 1
 
 " appearance and themes
 call minpac#add('morhetz/gruvbox')
 "call minpac#add('jacoborus/tender.vim')
-
-call minpac#add('vim-airline/vim-airline')
-call minpac#add('vim-airline/vim-airline-themes')
-let g:airline_powerline_fonts = 1
-let g:airline_solarized_bg='light'
-let g:airline_theme='angr'
-" let g:airline_theme='tenderplus'
 
 call minpac#add('mhinz/vim-startify')
 let g:startify_fortune_use_unicode = 1
@@ -136,20 +128,8 @@ call minpac#add('scrooloose/nerdcommenter')
 " project mgmt
 "call minpac#add('jceb/vim-orgmode')
 
-" Linting and Formatting
-source $HOME/.config/nvim/ale.vim
-call minpac#add('dense-analysis/ale')
-
-" TODO: figure out formatting for handlebars
-" prettydiff - bad CLI, mangles comments
-" html-beautify - bad compat with handlebars
-
-
-"call minpac#add('neoclide/coc.nvim', {'do': 'silent! yarn install --frozen-lockfile'})
-"source $HOME/.config/nvim/coc.vim
-
 " file searching
-call minpac#add('junegunn/fzf', { 'do': './install --all && ln -s $(pwd) ~/.fzf'})
+call minpac#add('junegunn/fzf')
 call minpac#add('junegunn/fzf.vim')
 let $FZF_DEFAULT_COMMAND = 'rg --files'
 nnoremap <C-p> :FZF<CR>
@@ -194,14 +174,14 @@ call minpac#add('elzr/vim-json')
 
 call minpac#add('gabrielelana/vim-markdown')
 
-call minpac#add('jparise/vim-graphql')
+"call minpac#add('jparise/vim-graphql')
 
 "call minpac#add('fatih/vim-go', { 'do': ':GoUpdateBinaries' })
 
 " ember
 " vim-mustache-handlebars has % jumping for if/else but missing some highights for ember stuff
-call minpac#add('mustache/vim-mustache-handlebars')
-let g:mustache_abbreviations = 1
+"call minpac#add('mustache/vim-mustache-handlebars')
+"let g:mustache_abbreviations = 1
 
 " vim-ember-hbs slightly better at highlighting but no % jumping between matching if/else tags
 "call minpac#add('joukevandermaas/vim-ember-hbs')
@@ -212,7 +192,7 @@ let g:mustache_abbreviations = 1
 "au Filetype html.handlebars setlocal filetype=html.handlebars syntax=mustache
 "augroup END
 
-call minpac#add('AndrewRadev/ember_tools.vim')
+"call minpac#add('AndrewRadev/ember_tools.vim')
 
 call minpac#add('othree/html5.vim')
 let g:html_indent_inctags = "p,div,LinkTo"
@@ -241,7 +221,7 @@ call minpac#add('pangloss/vim-javascript')
 
 " for future use if needed
 "call minpac#add('flowtype/vim-flow')
-call minpac#add('MaxMEllon/vim-jsx-pretty')
+"call minpac#add('MaxMEllon/vim-jsx-pretty')
 "
 " python
 "call minpac#add('metakirby5/codi.vim', { 'for': ['python'] })
@@ -256,13 +236,10 @@ call minpac#add('MaxMEllon/vim-jsx-pretty')
 "call minpac#add('ekalinin/Dockerfile.vim', { 'for': ['Dockerfile'] })
 
 " powershell
-call minpac#add('PProvost/vim-ps1')
+"call minpac#add('PProvost/vim-ps1')
 
 " Jenkins
 "call minpac#add('martinda/Jenkinsfile-vim-syntax')
-
-" time tracking
-call minpac#add('wakatime/vim-wakatime')
 
 " IMPORTANT: load fonts last
 if !has('win32')
@@ -350,7 +327,6 @@ noremap  <buffer> <silent> j gj
 set hidden
 
 " Last line
-set noshowmode
 set noshowcmd
 
 " Searching
@@ -376,21 +352,21 @@ set wildmode=longest,list,full
 set wildmenu
 
 " REPL mappings
-nnoremap <silent> <f10> :TREPLSendFile<cr>
-nnoremap <silent> <f9> :TREPLSendLine<cr>
-vnoremap <silent> <f9> :TREPLSendSelection<cr>
+"nnoremap <silent> <f10> :TREPLSendFile<cr>
+"nnoremap <silent> <f9> :TREPLSendLine<cr>
+"vnoremap <silent> <f9> :TREPLSendSelection<cr>
 
-nmap gx <Plug>(neoterm-repl-send)
-xmap gx <Plug>(neoterm-repl-send)
-nmap gxx <Plug>(neoterm-repl-send-line)
+"nmap gx <Plug>(neoterm-repl-send)
+"xmap gx <Plug>(neoterm-repl-send)
+"nmap gxx <Plug>(neoterm-repl-send-line)
 
 " Useful maps
 " hide/close terminal
-nnoremap <silent> ,th :call neoterm#close()<cr>
+"nnoremap <silent> ,th :call neoterm#close()<cr>
 " clear terminal
-nnoremap <silent> ,tl :call neoterm#clear()<cr>
+"nnoremap <silent> ,tl :call neoterm#clear()<cr>
 " kills the current job (send a <c-c>)
-nnoremap <silent> ,tc :call neoterm#kill()<cr>
+"nnoremap <silent> ,tc :call neoterm#kill()<cr>
 
 " nvim terminal mode
 :tnoremap <Esc> <C-\><C-n>
