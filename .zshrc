@@ -34,10 +34,9 @@ export FZF_DEFAULT_COMMAND='fd --type f --color=always'
 export FZF_DEFAULT_OPTS='--ansi --inline-info'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-# Increase ulimits (for broccoli for example)
-ulimit -n 1024
-ulimit -u 2048
-ulimit -Sn 16384
+# Raise every soft resource limit to its hard maximum, but keep core dumps off
+unlimit
+limit coredumpsize 0
 
 eval "$(atuin init zsh)"
 eval "$(starship init zsh)"
